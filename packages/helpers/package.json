@@ -2,6 +2,8 @@
   "name": "@lordicon/helpers",
   "version": "1.0.1",
   "description": "Helper functions for working with Lottie files.",
+  "repository": "https://github.com/lordicondev/lordicon",
+  "homepage": "https://lordicon.com/",
   "keywords": [
     "lottie",
     "lordicon"
@@ -19,6 +21,5 @@
   "scripts": {
     "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
     "clean": "rm -rf dist"
-  },
-  "repository": "https://github.com/lordicondev/lordicon"
+  }
 }
