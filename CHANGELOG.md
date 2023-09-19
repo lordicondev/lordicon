@@ -1,3 +1,3 @@
-## v1.0.0 (2023-09-19)
+## v0.0.3 (2023-09-19)
 
 - Monorepo for multiple packages.
