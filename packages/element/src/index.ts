@@ -5,6 +5,8 @@ import { Boomerang, Click, Hover, In, Loop, LoopOnHover, Morph, Sequence } from 
 
 export { Boomerang, Click, Element, Hover, In, Loop, LoopOnHover, Morph, Player, Sequence };
 
+export * from "./interfaces";
+
 /**
  * Defines `lord-icon` custom element with premade triggers and {@link interfaces.PlayerFactory | player factory}.
  * 
