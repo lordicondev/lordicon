@@ -1,6 +1,6 @@
 {
   "name": "docs-helpers",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "private": true,
   "keywords": [
     "lordicon",
@@ -14,7 +14,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/helpers": "^0.0.6"
+    "@lordicon/helpers": "^1.0.0"
   },
   "sideEffects": false,
   "author": "Marcin Baszczewski <marcin@baszczewski.pl> (https://www.baszczewski.pl/)",

@@ -1,6 +1,6 @@
 {
   "name": "@lordicon/element",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "The package that allows you to integrate Lordicon with a website easily.",
   "keywords": [
     "lordicon",
@@ -24,7 +24,7 @@
     "clean": "rm -rf dist && rm -rf release"
   },
   "dependencies": {
-    "@lordicon/helpers": "^0.0.6"
+    "@lordicon/helpers": "^1.0.0"
   },
   "devDependencies": {
     "base-64": "^1.0.0",

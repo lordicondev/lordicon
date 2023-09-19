@@ -1,6 +1,6 @@
 {
   "name": "@lordicon/helpers",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "Helper functions for working with Lottie files.",
   "keywords": [
     "lottie",
