@@ -1,6 +1,6 @@
 {
   "name": "docs-element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "keywords": [
     "lordicon",
@@ -14,7 +14,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/element": "^1.0.0"
+    "@lordicon/element": "^1.0.1"
   },
   "sideEffects": false,
   "author": "Marcin Baszczewski <marcin@baszczewski.pl> (https://www.baszczewski.pl/)",

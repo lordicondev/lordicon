@@ -1,6 +1,6 @@
 {
   "name": "@lordicon/element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The package that allows you to integrate Lordicon with a website easily.",
   "keywords": [
     "lordicon",
@@ -25,7 +25,7 @@
   },
   "repository": "https://github.com/lordicondev/lordicon",
   "dependencies": {
-    "@lordicon/helpers": "^1.0.0"
+    "@lordicon/helpers": "^1.0.1"
   },
   "devDependencies": {
     "base-64": "^1.0.0",
