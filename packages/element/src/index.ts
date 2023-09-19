@@ -3,7 +3,7 @@ import { IProperties, IconData } from './interfaces';
 import { AnimationLoader, Player } from './player';
 import { Boomerang, Click, Hover, In, Loop, LoopOnHover, Morph, Sequence } from './triggers';
 
-export { Boomerang, Click, Hover, In, Loop, LoopOnHover, Morph, Sequence, Element, Player };
+export { Boomerang, Click, Element, Hover, In, Loop, LoopOnHover, Morph, Player, Sequence };
 
 /**
  * Defines `lord-icon` custom element with premade triggers and {@link interfaces.PlayerFactory | player factory}.
