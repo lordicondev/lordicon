@@ -4,7 +4,7 @@
 export type IconData = any;
 
 /**
- * Supported event types by our {@link IPlayer | player}.
+ * Supported event types by {@link IPlayer | player}.
  */
 export type PlayerEventName = 'ready' | 'refresh' | 'complete' | 'frame';
 
@@ -14,14 +14,13 @@ export type PlayerEventName = 'ready' | 'refresh' | 'complete' | 'frame';
 export type PlayerEventCallback = () => void;
 
 /**
- * Callback with custom icon loader. Allows our {@link element.Element | Element} to load {@link IconData | icon data} from any source.
- * Remember to assign _icon loader_ before defining `lord-icon` custom element to take effect.
+ * Callback with a custom icon loader. Allows the {@link element.Element | Element} to load {@link IconData | icon data} from a custom source.
+ * Remember to assign the _icon loader_ before defining the `lord-icon` custom element to take effect.
  * 
  * Example:
  * ```js
  * import lottie from 'lottie-web';
- * import { defineElement } from 'lord-icon-element';
- * import { Element } from 'lord-icon-element/element';
+ * import { defineElement, Element } from '@lordicon/element';
  * 
  * Element.setIconLoader(async (name) => {
  *     const response = await fetch(`https://example.com/${name}.json`);
@@ -36,18 +35,17 @@ export type PlayerEventCallback = () => void;
 export type IconLoader = (name: string) => Promise<IconData>;
 
 /**
- * Defines the callback that will create {@link IPlayer | player instance} on {@link element.Element | Element} demand.
+ * Defines the callback that will create a {@link IPlayer | player instance} on demand for the {@link element.Element | Element}.
  * 
- * Some use cases for providing own player factory:
+ * Some use cases for providing your own player factory:
  * 
- * - Abandon use {@link index.defineElement | defineElement} which defines default triggers as potentially redundant (in this case assign player factory before defining custom element).
- * - Allows to provide custom (your own) {@link IPlayer | player} implementation. 
+ * - Consider abandoning the use of {@link index.defineElement | defineElement} due to the potential redundancy of default triggers. In this case, assign the player factory before defining the custom element.
+ * - Enables the provision of a custom (user-defined) {@link IPlayer | player} implementation. 
  * 
  * Example:
  * ```js
  * import lottie from 'lottie-web';
- * import { Element } from 'lord-icon-element/element';
- * import { Player } from 'lord-icon-element/player';
+ * import { Element, Player } from '@lordicon/element';
  * 
  * Element.setPlayerFactory((container, iconData) => {
  *     return new Player(
@@ -63,7 +61,7 @@ export type IconLoader = (name: string) => Promise<IconData>;
 export type PlayerFactory = (container: HTMLElement, iconData: IconData, initial: IProperties) => IPlayer;
 
 /**
- * Animation direction supported by {@link IPlayer | player instance}. "1" plays animation forward and "-1" plays the animation in reverse.
+ * Animation direction supported by the {@link IPlayer | player instance}. "1" plays the animation forward, and "-1" plays the animation in reverse.
  */
 export type AnimationDirection = 1 | -1;
 
@@ -73,7 +71,7 @@ export type AnimationDirection = 1 | -1;
 export type Stroke = 1 | 2 | 3 | 'light' | 'regular' | 'bold';
 
 /**
- * Interface for the object that stores multiple colors.
+ * Interface for an object that stores multiple colors.
  * 
  * Example:
  * ```js
@@ -88,9 +86,9 @@ export interface IColors {
 }
 
 /**
- * Interface for an object with customizable properties supported by {@link IPlayer | player}.
+ * Interface for an object with customizable properties supported by the {@link IPlayer | player}.
  * 
- * Notice: not every icon support all of that properties. This usually depends on the icon family.
+ * Note: Not every icon supports all of these properties. It usually depends on the icon family.
  * 
  * Example:
  * ```js
@@ -109,7 +107,7 @@ export interface IProperties {
     stroke?: Stroke;
 
     /**
-     * State (motion type) of the icon. States allow switching between multiple animations built into a single icon file.
+     * State (motion type) of the icon. States allow switching between multiple animations contained within a single icon file.
      */
     state?: string;
 
@@ -131,7 +129,7 @@ export interface IState {
 
 /**
  * Interface for an animation player.
- * Provides a simple API to control animations and customize icon properties on the fly.
+ * Provides a simple API to control animations and customize icon properties dynamically.
  */
 export interface IPlayer {
     /**
@@ -145,43 +143,43 @@ export interface IPlayer {
     disconnect(): void;
 
     /**
-     * Start listening for event.
+     * Start listening for an event.
      * @param name Event name.
      * @param callback Event callback.
      */
     addEventListener(name: PlayerEventName, callback: PlayerEventCallback): () => void;
 
     /**
-     * Stop listening for event.
+     * Stop listening for an event.
      * @param eventName Event name.
      * @param callback Event callback.
      */
     removeEventListener(eventName: PlayerEventName, callback?: PlayerEventCallback): void;
 
     /**
-     * Play animation. 
+     * Play the animation. 
      * 
-     * Notice: finished animation can't be played again on the last frame.
+     * Note: A finished animation can't be played again from the last frame.
      */
     play(): void;
 
     /**
-     * Play animation from beginning.
+     * Play the animation from the beginning.
      */
     playFromBeginning(): void;
 
     /**
-     * Pause animation.
+     * Pause the animation.
      */
     pause(): void;
 
     /**
-     * Stop animation.
+     * Stop the animation.
      */
     stop(): void;
 
     /**
-     * Go to the extact frame.
+     * Go to the exact frame.
      * @param frame Frame number.
      */
     goToFrame(frame: number): void;
@@ -197,65 +195,65 @@ export interface IPlayer {
     goToLastFrame(): void;
 
     /**
-     * Access to read or modify multiple properties at once. Resets to default not provided values.
+     * Access to read or modify multiple properties at once. Resets to default any properties that are not provided.
      * 
      * @param properties Properties to assign.
      */
     properties: IProperties;
 
     /**
-     * This property let you find out customizable colors or update them within a processed icon.
+     * This property allows you to discover customizable colors or update them within a processed icon.
      * 
-     * Example (list all supported colors by icon):
+     * Example (list all supported colors by the icon):
      * ```js
-     * { ...iconElement.player.colors }
+     * { ...iconElement.playerInstance.colors }
      * ```
      * 
-     * Example (update just single color):
+     * Example (update a single color):
      * ```js
-     * iconElement.player.colors.primary = '#ff0000';
+     * iconElement.playerInstance.colors.primary = '#ff0000';
      * ```
      * 
-     * Example (update many colors at once):
+     * Example (update multiple colors at once):
      * ```js
-     * iconElement.player.colors = { primary: 'red', secondary: 'blue' };
+     * iconElement.playerInstance.colors = { primary: 'red', secondary: 'blue' };
      * ```
      * 
      * Example (reset all colors to default):
      * ```js
-     * iconElement.player.colors = null;
+     * iconElement.playerInstance.colors = null;
      * ```
      */
     colors: IColors | null;
 
     /**
-     * Stroke gives you the value of icon stroke width.
+     * The 'stroke' property gives you the value of the icon's stroke width.
      */
     stroke: Stroke | null;
 
     /**
-     * This property allows to control state (motion type) of the icon.
-     * States allow switching between multiple animations build into single icon file.
+     * This property allows you to control the state (motion type) of the icon.
+     * States enable switching between multiple animations built into a single icon file.
      */
     state: string | null;
 
     /**
-     * This property allows to control the speed of the icon animation.
+     * This property allows you to control the speed of the icon animation.
      */
     speed: number;
 
     /**
-     * Access to player frame. You can control animation playing with changing this frame.
+     * Access the player frame. You can manually control the animation playback by changing this frame.
      */
     frame: number;
 
     /**
-     * Direction lets you influence the playing course of the animation. Whether it plays forward (1) or reverse (-1).
+     * The 'direction' property lets you influence the direction of the animation playback, whether it plays forward (1) or in reverse (-1).
      */
     direction: AnimationDirection;
 
     /**
-     * This property allows to control player loop.
+     * This property allows you to control whether the player should loop the animation.
      */
     loop: boolean;
 
@@ -265,46 +263,45 @@ export interface IPlayer {
     readonly isReady: boolean;
 
     /**
-     * The player is playing animation.
+     * The player is currently playing the animation.
      */
     readonly isPlaying: boolean;
 
     /**
-     * States give you the list of supported states by a processed icon.
+     * The 'states' property provides a list of supported states by a processed icon.
      */
     readonly states: IState[];
 
     /**
-     * Frames give you the value of animation length in a number of frames.
+     * The 'frames' property provides the value of the animation length in terms of the number of frames.
      */
     readonly frames: number;
 
     /**
-     * Duration gives you the value of animation length in seconds.
+     * The 'duration' property provides the value of the animation length in seconds.
      */
     readonly duration: number;
 }
 
 /**
- * This is an interface for the trigger. Triggers provide interaction chains that can be handled by {@link element.Element | Element}. 
- * Implement this interface while creating new trigger.
- * You can get access to the current _element_, _targetElement_ and _player_ from trigger {@link interfaces.ITriggerConstructor | constructor}.
+ * Interface for triggers. Triggers provide interaction chains that can be handled by {@link element.Element | Element}. 
+ * Implement this interface when creating a new trigger.
+ * You can access the current _player_, _element_, and _targetElement_ from the trigger's {@link interfaces.ITriggerConstructor | constructor}.
  * 
  * Example:
  * ```js
  * import lottie from 'lottie-web';
- * import { defineElement } from 'lord-icon-element';
- * import { Element } from 'lord-icon-element/element';
+ * import { defineElement, Element } from '@lordicon/element';
  * 
  * class Custom {
+ *     player;
  *     element;
  *     targetElement;
- *     player;
  * 
- *     constructor(element, targetElement, player) {
+ *     constructor(player, element, targetElement) {
+ *         this.player = player;
  *         this.element = element;
  *         this.targetElement = targetElement;
- *         this.player = player;
  *     }
  * 
  *     onReady() {
@@ -319,40 +316,40 @@ export interface IPlayer {
  */
 export interface ITrigger {
     /**
-     * The trigger has been connected with {@link element.Element | Element}.
+     * The trigger has been connected to the {@link element.Element | Element}.
      */
     onConnected?: () => void;
 
     /**
-     * The trigger has been disconnected from {@link element.Element | Element}.
+     * The trigger has been disconnected from the {@link element.Element | Element}.
      * 
-     * Notice: remember to remove here all potential event listeners you assigned earlier.
+     * Note: Remember to remove any potential event listeners you assigned earlier in this trigger.
      */
     onDisconnected?: () => void;
 
     /**
-     * The {@link interfaces.IPlayer | player} is ready. Now you can control animation and icon properties with it.
+     * The {@link interfaces.IPlayer | player} is ready. Now you can control the animation and icon properties with it.
      */
     onReady?: () => void;
 
     /**
-     * The {@link interfaces.IPlayer | player} was refreshed. For example by icon customization.
+     * The {@link interfaces.IPlayer | player} was refreshed, for example, due to icon customization.
      */
     onRefresh?: () => void;
 
     /**
-     * The {@link interfaces.IPlayer | player} completes an animation.
+     * The {@link interfaces.IPlayer | player} has completed an animation.
      */
     onComplete?: () => void;
 
     /**
-     * The {@link interfaces.IPlayer | player} renders frame.
+     * The {@link interfaces.IPlayer | player} has rendered a frame.
      */
     onFrame?: () => void;
 }
 
 /**
- * Definition of supported trigger constructor.
+ * Definition of a supported trigger constructor.
  */
 export interface ITriggerConstructor {
     /**

@@ -1,7 +1,7 @@
 import { IPlayer, ITrigger } from '../interfaces';
 
 /**
- * Hover or click the icon to plays the animation from first to the last frame. After moving or clicking away, the animation plays in reverse.
+ * The __Morph__ trigger allows playing the animation from the first to the last frame when hovering or clicking on the icon. After moving or clicking away, the animation plays in reverse.
  */
 export class Morph implements ITrigger {
     constructor(

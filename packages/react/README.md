@@ -1,4 +1,4 @@
-# react
+# React
 
 This library allows you to easily integrate the playback of [Lordicon](https://lordicon.com/) icons into a React application.
 

@@ -2,9 +2,9 @@ import { isObjectLike, parseColors, parseState, parseStroke } from '@lordicon/he
 import { IPlayer, ITrigger, ITriggerConstructor, IconData, IconLoader, PlayerFactory } from './interfaces';
 
 /**
- * Supported icon loading strategies by our {@link Element | Element}.
+ * Supported icon loading strategies for our {@link Element | Element}.
  */
-type LoadingType = 'lazy' | 'interaction';
+export type LoadingType = 'lazy' | 'interaction';
 
 /**
  * Use constructable stylesheets if supported (https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
@@ -12,12 +12,12 @@ type LoadingType = 'lazy' | 'interaction';
 const SUPPORTS_ADOPTING_STYLE_SHEETS = 'adoptedStyleSheets' in Document.prototype && 'replace' in CSSStyleSheet.prototype;
 
 /**
- * List of events support on intersection loading.
+ * List of events supported for intersection loading.
  */
 const INTERSECTION_LOADING_EVENTS = ['click', 'mouseenter', 'mouseleave'];
 
 /**
- * Style for this element.
+ * Static style for this element.
  */
 const ELEMENT_STYLE = `
     :host {
@@ -89,13 +89,12 @@ const OBSERVED_ATTRIBUTES: SUPPORTED_ATTRIBUTES[] = [
 ];
 
 /**
- * Custom element implementation that supports rendering, customizing and controlling of our icons in simple way.
+ * Define custom element and a player to streamline the rendering, customization, and easy control of Lordicon icons.
  * 
  * Example:
  * ```js
  * import lottie from 'lottie-web';
- * import { Element } from 'lord-icon-element/element';
- * import { Player } from 'lord-icon-element/player';
+ * import { Element, Player } from '@lordicon/element';
  * 
  * Element.setPlayerFactory((container, iconData, initial) => {
  *     return new Player(
@@ -116,29 +115,28 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     protected static _playerFactory?: PlayerFactory;
     protected static _definedTriggers: Map<string, ITriggerConstructor> = new Map<string, ITriggerConstructor>();
 
-    /** 
-     * Get current element version.
+    /**
+     * Get the current element version.
      */
     static get version() {
         return '__BUILD_VERSION__';
     }
 
     /**
-     * Custom element observed attributes.
+     * Observed attributes for the custom element.
      */
     static get observedAttributes() {
         return OBSERVED_ATTRIBUTES;
     }
 
     /**
-     * Assign callback responsible for loading icons. Allows our {@link element.Element | Element} to load {@link interfaces.IconData | icon data} from any source.
-     * Remember to assign _icon loader_ before defining `lord-icon` custom element to take effect.
+     * Assign a callback responsible for loading icons. This allows {@link element.Element | Element} to load {@link interfaces.IconData | icon data} from a custom source.
+     * Remember to assign the _icon loader_ before defining the `lord-icon` custom element to take effect.
      * 
      * Example:
      * ```js
      * import lottie from 'lottie-web';
-     * import { defineElement } from 'lord-icon-element';
-     * import { Element } from 'lord-icon-element/element';
+     * import { defineElement, Element } from '@lordicon/element';
      * 
      * Element.setIconLoader(async (name) => {
      *     const response = await fetch(`https://example.com/${name}.json`);
@@ -155,7 +153,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Assign callback which create a player. Player is responsible for customizing icons and playing animations.
+     * Assign a callback that creates a player. The player is responsible for customizing icons and playing animations.
      * @param loader
      */
     static setPlayerFactory(loader: PlayerFactory) {
@@ -163,9 +161,9 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Define supported trigger. Triggers allows to define interaction strategy with icon.
-     * @param name
-     * @param triggerClass
+     * Define a supported trigger. Triggers allow the definition of custom interaction strategies for the icon.
+     * @param name Trigger name.
+     * @param triggerClass Trigger class.
      */
     static defineTrigger(name: string, triggerClass: ITriggerConstructor) {
         Element._definedTriggers.set(name, triggerClass);
@@ -181,12 +179,12 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
 
     /**
      * Callback created by one of the lazy loading methods.
-     * Forces the process to continue immediately.
+     * It forces the process to continue immediately.
      */
     delayedLoading: ((cancel?: boolean) => void) | null = null;
 
     /**
-     * Handle attribute update.
+     * Handle attribute updates.
      * @param name
      * @param oldValue
      * @param newValue
@@ -200,7 +198,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Element connected.
+     * The element is connected.
      */
     protected connectedCallback() {
         // create elements only once
@@ -276,7 +274,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Element disconnected.
+     * The element is disconnected.
      */
     protected disconnectedCallback() {
         // clean state from delayed loading
@@ -292,7 +290,6 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
 
     /**
      * Create DOM elements.
-     * @returns
      */
     protected createElements() {
         // create shadow root for this element
@@ -324,7 +321,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Instantiate player intance on demand with assigned player factory.
+     * Instantiate a player instance on demand using the assigned player factory.
      * @returns
      */
     protected async createPlayer(): Promise<void> {
@@ -433,7 +430,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
 
     /**
      * Destroy connected player and connected trigger. 
-     * Player is recreated on every icon data change.
+     * The player is recreated every time the icon data changes.
      */
     protected destroyPlayer() {
         // mark not ready
@@ -458,7 +455,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Load icon with assigned icon loader or source indicated by src attribute.
+     * Load the icon using the assigned icon loader or from the source indicated by the 'src' attribute.
      * @returns Icon data.
      */
     protected async loadIconData(): Promise<IconData> {
@@ -477,15 +474,15 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Synchronize element state with player.
+     * Synchronize the element's state with the player.
      */
     protected refresh() {
         this.movePaletteToCssVariables();
     }
 
     /**
-     * Update defaults for css variables.
-     * Notice: css variables take precedence over colors assigned by other methods!
+     * Update defaults for CSS variables.
+     * Notice: CSS variables take precedence over colors assigned by other methods.
      */
     protected movePaletteToCssVariables() {
         for (const [key, value] of Object.entries(this._playerInstance!.colors || {})) {
@@ -498,20 +495,20 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Target attribute changed. Element should reload it's trigger.
+     * The 'target' attribute has been changed. The element should now reload its trigger.
      */
     protected targetChanged() {
         this.triggerChanged();
     }
 
     /**
-     * Loading attribute changed.
+     * The 'loading' attribute has been changed.
      */
     protected loadingChanged() {
     }
 
     /**
-     * Trigger attribute changed. Disconnect old trigger and instantiate new one.
+     * The 'trigger' attribute has been changed. Disconnect the old trigger and instantiate the new one.
      */
     protected triggerChanged(): void {
         if (this._triggerInstance) {
@@ -550,7 +547,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Colors attribute changed. Notify about new value player.
+     * The 'colors' attribute has been changed. Notify the player about the new value.
      */
     protected colorsChanged() {
         if (!this._playerInstance) {
@@ -561,7 +558,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Stroke attribute changed. Notify about new value player.
+     * The 'stroke' attribute has been changed. Notify the player about the new value.
      */
     protected strokeChanged() {
         if (!this._playerInstance) {
@@ -572,7 +569,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * State attribute changed. Notify about new value player.
+     * The 'state' attribute has been changed. Notify the player about the new value.
      */
     protected stateChanged() {
         if (!this._playerInstance) {
@@ -583,7 +580,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Icon attribute changed. Reload our player.
+     * The 'icon' attribute has been changed. Reload our player.
      */
     protected iconChanged() {
         if (!this._isConnected) {
@@ -595,7 +592,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Src attribute changed. Reload our player.
+     * The 'src' attribute has been changed. Reload our player.
      */
     protected srcChanged() {
         if (!this._isConnected) {
@@ -607,7 +604,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Update current icon. We can assign here icon name handled by {@link interfaces.IconLoader | icon loader} or right away {@link interfaces.IconData | icon data}.
+     * Update the current icon. You can assign either an icon name handled by the {@link interfaces.IconLoader | icon loader} or directly use {@link interfaces.IconData | icon data}.
      */
     set icon(value: IconData | string | undefined) {
         if (value && isObjectLike(value)) {
@@ -637,14 +634,14 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get icon (icon name or assiged directly {@link interfaces.IconData | icon data})
+     * Get the icon (icon name or assiged {@link interfaces.IconData | icon data})
      */
     get icon(): IconData | string | undefined {
         return this._assignedIconData || this.getAttribute('icon');
     }
 
     /**
-     * Set src value.
+     * Set the 'src' value.
      */
     set src(value: string | null) {
         if (value) {
@@ -655,16 +652,16 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get src value.
+     * Get the 'src' value.
      */
     get src(): string | null {
         return this.getAttribute('src');
     }
 
     /**
-     * Set state value. 
+     * Set the 'state' value. 
      * 
-     * Notice: you can check available states for loaded icon with `states` property.
+     * Note: You can check available states for the loaded icon using the `states` property.
      */
     set state(value: string | null) {
         if (value) {
@@ -675,14 +672,14 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get state value.
+     * Get the 'state' value.
      */
     get state(): string | null {
         return this.getAttribute('state');
     }
 
     /**
-     * Set colors value. We support here string format with comma color separation: "primary:#fdd394,secondary:#03a9f4".
+     * Configure color values. We support a string format with comma-separated colors: "primary:#fdd394,secondary:#03a9f4".
      * 
      * Example:
      * ```html
@@ -698,14 +695,14 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get colors value.
+     * Get the 'colors' value.
      */
     get colors(): string | null {
         return this.getAttribute('colors');
     }
 
     /**
-     * Set trigger value. Provide name of already defined trigger!
+     * Set the 'trigger' value. Provide the name of an already defined trigger.
      */
     set trigger(value: string | null) {
         if (value) {
@@ -716,15 +713,15 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get trigger value.
+     * Get the 'trigger' value.
      */
     get trigger(): string | null {
         return this.getAttribute('trigger');
     }
 
     /**
-     * Set loading strategy. By default {@link interfaces.IconData | icon data} are loaded instantly on {@link interfaces.IPlayer | player} initialisation. 
-     * It's possible to delay icon loading (with _src_ and _icon_ attribute) by changing _loading_ value to _lazy_.
+     * Set the loading strategy. By default, {@link interfaces.IconData | icon data} is loaded instantly upon {@link interfaces.IPlayer | player} initialization. 
+     * It's possible to delay icon loading (using the _src_ and _icon_ attributes) by changing the _loading_ value to _lazy_ or _interaction_.
      */
     set loading(value: LoadingType | null) {
         if (value) {
@@ -735,7 +732,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get loading value.
+     * Get the 'loading' value.
      */
     get loading(): LoadingType | null {
         if (this.getAttribute('loading')) {
@@ -751,7 +748,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Assign query selector for closest element target used for listening events.
+     * Assign a query selector for the closest element target used for listening to events.
      */
     set target(value: string | null) {
         if (value) {
@@ -762,14 +759,14 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get target value.
+     * Get the 'target' value.
      */
     get target(): string | null {
         return this.getAttribute('target');
     }
 
     /**
-     * Set stroke value (1, 2, 3, light, regular, bold).
+     * Set the 'stroke' value (1, 2, 3, light, regular, bold).
      */
     set stroke(value: string | null) {
         if (value) {
@@ -780,7 +777,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Get stroke value.
+     * Get the 'stroke' value.
      */
     get stroke(): string | null {
         if (this.hasAttribute('stroke')) {
@@ -790,9 +787,9 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Check whether the element is ready (instantiated player, trigger and loaded icon data).
+     * Check whether the element is ready (has an instantiated player, trigger, and loaded icon data).
      * 
-     * You can listen for element ready with event listener:
+     * You can listen for the element's readiness with an event listener:
      * ```js
      * element.addEventListener('ready', () => {});
      * ```
@@ -802,28 +799,28 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Access animation {@link interfaces.IPlayer | player}.
+     * Access the {@link interfaces.IPlayer | player} instance.
      */
     get playerInstance(): P | undefined {
         return this._playerInstance as any;
     }
 
     /**
-     * Access connected {@link interfaces.ITrigger | trigger} instance.
+     * Access the {@link interfaces.ITrigger | trigger} instance.
      */
     get triggerInstance(): ITrigger | undefined {
         return this._triggerInstance;
     }
 
     /**
-     * Access animation container element.
+     * Access the animation container element.
      */
     protected get animationContainer(): HTMLElement | undefined {
         return this._root!.lastElementChild as any;
     }
 
     /**
-     * Access loaded {@link interfaces.IconData | icon data}.
+     * Access the loaded {@link interfaces.IconData | icon data}.
      */
     protected get iconData(): IconData | undefined {
         return this._assignedIconData || this._loadedIconData;

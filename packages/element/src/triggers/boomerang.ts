@@ -1,7 +1,7 @@
 import { IPlayer, ITrigger } from '../interfaces';
 
 /**
- * Boomerang trigger plays animation from first to last frame when you hover over them, then play in reverse once you move the cursor away.
+ * The __Boomerang__ trigger plays the animation from the first to the last frame when you hover over it and then plays in reverse once you move the cursor away.
  */
 export class Boomerang implements ITrigger {
     constructor(

@@ -1,3 +1,3 @@
-# docs-lottie
+# Helpers
 
-Documentation generator for __@lordicon/lottie__.
+This is the documentation generator for the `@lordicon/helpers` package.

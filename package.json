@@ -34,7 +34,7 @@
     "demo-react": "lerna run start-web --scope=demo-react",
     "docs-element": "lerna run start --scope=docs-element",
     "docs-react": "lerna run start --scope=docs-react",
-    "docs-lottie": "lerna run start --scope=docs-lottie",
+    "docs-helpers": "lerna run start --scope=docs-helpers",
     "test-element": "lerna run start --scope=test-element"
   },
   "engines": {

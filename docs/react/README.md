@@ -1,3 +1,3 @@
-# docs-react
+# React
 
-Documentation generator for __@lordicon/react__.
+This is the documentation generator for the `@lordicon/react` package.

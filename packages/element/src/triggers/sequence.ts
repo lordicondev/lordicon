@@ -4,7 +4,7 @@ const NUMBER_REGEX = /^\d*(\.\d+)?$/
 const MUTATION_OBSERVER_CONFIG = { attributes: true, childList: false, subtree: false };
 
 /**
- * Sequence player.
+ * The __Sequence__ trigger allows you to define complex playing scenarios with a simple definition.
  * 
  * Example usage:
  * ```html

@@ -1,6 +1,6 @@
-# helpers
+# Helpers
 
-Helper functions for working with Lottie files.
+This package provides helper functions for working with Lottie files.
 
 ## Installation
 

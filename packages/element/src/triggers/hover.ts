@@ -1,7 +1,7 @@
 import { IPlayer, ITrigger } from '../interfaces';
 
 /**
- * Hover trigger plays the animation from the first to last frame when the cursor hovers over the icon bounding box.
+ * The __Hover__ trigger plays the animation from the first to the last frame when the cursor hovers over the icon (target).
  */
 export class Hover implements ITrigger {
     constructor(

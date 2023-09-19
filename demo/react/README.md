@@ -1,3 +1,3 @@
-# demo-react
+# React
 
-Sample react app with lord icon integration.
+Here's a sample React app with Lordicon integration using `@lordicon/react`.

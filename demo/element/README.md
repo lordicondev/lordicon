@@ -1,6 +1,6 @@
-# demo-element
+# Element
 
-List of available web examples:
+Here is a list of available web examples for `@lordicon/element`:
 
 - **release** - This example presents the easiest way to use the Lordicon custom
   element with released version. Keep in mind that this is not the most

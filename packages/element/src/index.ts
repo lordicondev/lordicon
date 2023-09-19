@@ -8,10 +8,10 @@ export { Boomerang, Click, Element, Hover, In, Loop, LoopOnHover, Morph, Player,
 export * from "./interfaces";
 
 /**
- * Defines `lord-icon` custom element with premade triggers and {@link interfaces.PlayerFactory | player factory}.
+ * Helper method that defines the `lord-icon` custom element with pre-made triggers and a {@link interfaces.PlayerFactory | player factory}.
  * 
  * This method defines the following triggers:
- * - {@link triggers/sequence.In | in}
+ * - {@link triggers/in.In | in}
  * - {@link triggers/click.Click | click}
  * - {@link triggers/hover.Hover | hover}
  * - {@link triggers/loop.Loop | loop}
@@ -20,20 +20,20 @@ export * from "./interfaces";
  * - {@link triggers/boomerang.Boomerang | boomerang}
  * - {@link triggers/sequence.Sequence | sequence}
  *
- * Example of tag definition with default setup:
+ * Example of tag definition with the default setup:
  * ```js
  * import lottie from 'lottie-web';
- * import { defineElement } from 'lord-icon-element';
+ * import { defineElement } from '@lordicon/element';
  * 
  * defineElement(lottie.loadAnimation);
  * ```
  * 
- * And basic usage from markup which is possible after tag defining:
+ * Basic usage from markup which is possible after tag definition:
  * ```html
  * <lord-icon trigger="hover" src="/icons/confetti.json"></lord-icon>
  * ```
  * 
- * @param animationLoader Use `loadAnimation` from `lottie-web` package.
+ * @param animationLoader Use `loadAnimation` from the `lottie-web` package.
  */
 export function defineElement(animationLoader: AnimationLoader) {
     Element.setPlayerFactory((container: HTMLElement, iconData: IconData, initial: IProperties) => {

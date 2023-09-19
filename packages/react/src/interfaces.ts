@@ -4,7 +4,7 @@
 export type IconData = any;
 
 /**
- * Animation direction supported by player. "1" plays animation forward and "-1" plays the animation in reverse.
+ * Animation direction supported by the {@link IPlayer | player instance}. "1" plays the animation forward, and "-1" plays the animation in reverse.
  */
 export type AnimationDirection = 1 | -1;
 
@@ -59,34 +59,34 @@ export interface IPlayerOptions {
 
 /**
  * Interface for an animation player.
- * Provides a simple API to control animations and customize icon properties on the fly.
+ * Provides a simple API to control animations and customize icon properties dynamically.
  */
 export interface IPlayer {
   /**
-    * Connect the player with the element.
-    */
+   * Connect the player with the element.
+   */
   connect(): void;
 
   /**
-   * Disconnect the player from the element.
-   */
+    * Disconnect the player from the element.
+    */
   disconnect(): void;
 
   /**
-   * Play animation. 
-   * 
-   * Notice: finished animation can't be played again on the last frame.
-   */
+    * Play the animation. 
+    * 
+    * Note: A finished animation can't be played again from the last frame.
+    */
   play(): void;
 
   /**
-   * Play animation from beginning.
+   * Play the animation from the beginning.
    */
   playFromBeginning(): void;
 
   /**
-   * Pause animation.
-   */
+    * Pause the animation.
+    */
   pause(): void;
 
   /**
@@ -95,27 +95,27 @@ export interface IPlayer {
   goToFirstFrame(): void;
 
   /**
-   * Go to the last animation frame.
-   */
+    * Go to the last animation frame.
+    */
   goToLastFrame(): void;
 
   /**
-   * Frames give you the value of animation length in a number of frames.
+   * The 'frames' property provides the value of the animation length in terms of the number of frames.
    */
   readonly frames: number;
 
   /**
-   * The player is playing animation.
+   * The player is currently playing the animation.
    */
   readonly isPlaying: boolean;
 
   /**
-   * States give you the list of supported states by a processed icon.
-   */
+    * The 'states' property provides a list of supported states by a processed icon.
+    */
   readonly states: IState[];
 
   /**
-   * Access to current state.
+   * Access to the current state.
    */
   readonly currentState?: IState;
 }

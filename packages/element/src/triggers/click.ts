@@ -6,7 +6,7 @@ const CLICK_EVENTS = [
 ];
 
 /**
- * Click trigger plays animation after the icon click.
+ * The __Click__ trigger plays the animation after clicking on the icon (its target).
  */
 export class Click implements ITrigger {
     constructor(

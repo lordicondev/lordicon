@@ -1,7 +1,7 @@
 import { IPlayer, ITrigger } from '../interfaces';
 
 /**
- * Plays animation on target element in viewport.
+ * The __In__ trigger plays the animation when the icon (target) is within the user's viewport.
  */
 export class In implements ITrigger {
     private playTimeout: any = null;

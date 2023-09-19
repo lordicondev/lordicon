@@ -1,7 +1,7 @@
 import { IPlayer, ITrigger } from '../interfaces';
 
 /**
- * Loop trigger plays the animation from first to last frame infinitely, with no interaction necessary.
+ * The __Loop__ trigger plays the animation from the first to the last frame infinitely, with no interaction necessary.
  */
 export class Loop implements ITrigger {
     private playTimeout: any = null;

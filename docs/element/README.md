@@ -1,3 +1,3 @@
-# docs-element
+# Element
 
-Documentation generator for __@lordicon/element__.
+This is the documentation generator for the `@lordicon/element` package.
