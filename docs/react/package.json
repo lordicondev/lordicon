@@ -1,6 +1,6 @@
 {
   "name": "docs-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "keywords": [
     "lordicon",
@@ -14,7 +14,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/react": "*"
+    "@lordicon/react": "^0.0.3"
   },
   "sideEffects": false,
   "author": "Marcin Baszczewski <marcin@baszczewski.pl> (https://www.baszczewski.pl/)",
