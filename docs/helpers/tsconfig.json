@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "jsx": "react-jsx",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "removeComments": false,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "emitDecoratorMetadata": true,
+        "declaration": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "types": []
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["../../packages/helpers/src/**/*.ts"]
+}

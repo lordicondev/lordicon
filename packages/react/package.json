@@ -1,0 +1,26 @@
+{
+  "name": "@lordicon/react",
+  "version": "0.0.2",
+  "description": "The package that allows you to integrate Lordicon with a react mobile app easily.",
+  "keywords": [],
+  "author": "Marcin Baszczewski <marcin@baszczewski.pl>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@lordicon/helpers": "*"
+  },
+  "peerDependencies": {
+    "lottie-react-native": "*",
+    "lottie-web": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}

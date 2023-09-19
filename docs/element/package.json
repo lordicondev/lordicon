@@ -1,0 +1,27 @@
+{
+  "name": "docs-element",
+  "version": "0.0.2",
+  "private": true,
+  "keywords": [
+    "lordicon",
+    "lottie",
+    "icon",
+    "animation"
+  ],
+  "scripts": {
+    "build": "node ./docs.js",
+    "start": "http-server ./dist -p 8080 -c-1 -o",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@lordicon/element": "*"
+  },
+  "sideEffects": false,
+  "author": "Marcin Baszczewski <marcin@baszczewski.pl> (https://www.baszczewski.pl/)",
+  "homepage": "https://lordicon.com/",
+  "repository": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

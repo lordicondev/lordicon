@@ -1,0 +1,19 @@
+{
+  "name": "demo-element",
+  "private": true,
+  "version": "0.0.2",
+  "description": "> TODO: description",
+  "author": "Marcin Baszczewski <marcin@baszczewski.pl>",
+  "homepage": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "http-server ./dist -p 8080 -c-1 -o",
+    "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@lordicon/element": "^0.0.2",
+    "lottie-web": "^5.12.0",
+    "lottie-web-light": "^1.1.0"
+  }
+}

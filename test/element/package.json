@@ -1,0 +1,32 @@
+{
+  "name": "test-element",
+  "version": "0.0.2",
+  "private": true,
+  "keywords": [
+    "lordicon",
+    "lottie",
+    "icon",
+    "animation"
+  ],
+  "scripts": {
+    "start": "http-server ./dist -p 8080 -c-1 -o",
+    "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@lordicon/element": "*",
+    "@lordicon/helpers": "*"
+  },
+  "devDependencies": {
+    "base-64": "^1.0.0",
+    "resemblejs": "^4.1.0"
+  },
+  "sideEffects": false,
+  "author": "Marcin Baszczewski <marcin@baszczewski.pl> (https://www.baszczewski.pl/)",
+  "homepage": "https://lordicon.com/",
+  "repository": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

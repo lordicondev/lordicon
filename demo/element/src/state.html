@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>State</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="/style.css" />
+        <script src="/lordicon.js"></script>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <td>description</td>
+                <td>preview</td>
+            </tr>
+            <tr>
+                <td>state: in-reveal</td>
+                <td>
+                    <lord-icon
+                        trigger="loop"
+                        state="in-reveal"
+                        src="/icons/coins.json"
+                    ></lord-icon>
+                </td>
+            </tr>
+            <tr>
+                <td>state: hover-jump</td>
+                <td>
+                    <lord-icon
+                        trigger="loop"
+                        state="hover-jump"
+                        src="/icons/coins.json"
+                    ></lord-icon>
+                </td>
+            </tr>
+            <tr>
+                <td>state: hover-spending</td>
+                <td>
+                    <lord-icon
+                        trigger="loop"
+                        state="hover-spending"
+                        src="/icons/coins.json"
+                    ></lord-icon>
+                </td>
+            </tr>
+            <tr>
+                <td>state: loop-spin</td>
+                <td>
+                    <lord-icon
+                        trigger="loop"
+                        state="loop-spin"
+                        src="/icons/coins.json"
+                    ></lord-icon>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    state: handle with custom code (from in-reveal to hover-jump
+                    / loop-spin)
+                </td>
+                <td>
+                    <lord-icon
+                        id="main-icon"
+                        src="/icons/coins.json"
+                    ></lord-icon>
+                </td>
+            </tr>
+        </table>
+
+        <script type="module" src="/state.js"></script>
+    </body>
+</html>

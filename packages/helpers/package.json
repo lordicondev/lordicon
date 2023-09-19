@@ -1,0 +1,20 @@
+{
+  "name": "@lordicon/helpers",
+  "version": "0.0.2",
+  "description": "Helper functions for working with Lottie files.",
+  "keywords": [
+    "lottie",
+    "lordicon"
+  ],
+  "author": "Marcin Baszczewski <marcin@baszczewski.pl>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
+    "clean": "rm -rf dist"
+  }
+}

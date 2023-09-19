@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "jsx": "react-native",
+        "lib": ["ESNext"],
+        "target": "esnext",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "removeComments": false,
+        "strict": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "declaration": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
+        "types": []
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["src/**/*.ts", "src/**/*.js"]
+}
