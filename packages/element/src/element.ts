@@ -117,7 +117,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     protected static _definedTriggers: Map<string, ITriggerConstructor> = new Map<string, ITriggerConstructor>();
 
     /** 
-     * Get element version.
+     * Get current element version.
      */
     static get version() {
         return '__BUILD_VERSION__';

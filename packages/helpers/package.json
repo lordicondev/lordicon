@@ -13,6 +13,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
     "clean": "rm -rf dist"
