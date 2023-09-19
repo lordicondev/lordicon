@@ -17,6 +17,7 @@
     "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
     "clean": "rm -rf dist"
   },
+  "repository": "https://github.com/lordicondev/lordicon",
   "dependencies": {
     "@lordicon/helpers": "^1.0.0"
   },
