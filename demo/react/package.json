@@ -1,7 +1,7 @@
 {
   "name": "demo-react",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
   "keywords": [],
   "author": "Marcin Baszczewski <marcin@baszczewski.pl>",
@@ -15,7 +15,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/react": "^1.0.1",
+    "@lordicon/react": "^1.0.2",
     "lottie-web": "^5.12.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
