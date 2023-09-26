@@ -1,6 +1,6 @@
 {
   "name": "@lordicon/react",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "This library allows you to easily integrate the playback of Lordicon icons into a React application.",
   "repository": "https://github.com/lordicondev/lordicon",
   "homepage": "https://lordicon.com/",

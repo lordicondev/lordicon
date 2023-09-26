@@ -285,10 +285,12 @@ export class Player implements IPlayer {
     }
 
     play() {
+        this._lottie!.setDirection(this._direction);
         this._lottie!.play();
     }
 
     playFromBeginning() {
+        this._lottie!.setDirection(1);
         if (this._state) {
             this._lottie!.playSegments([this._state.time, this._state.time + this._state.duration + 1], true);
         } else {

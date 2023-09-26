@@ -235,7 +235,7 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
 
         const a = this._state ? this._state!.time : 0;
         const b = this._state ? (this._state!.time + this._state!.duration) : this._totalFrames;
-        const c = this.props.direction === -1 ? [b, a] : [a, b];
+        const c = [a, b];
         const duration = this.duration(Math.abs(b - a));
         
         this.state.progress?.setValue(this.frameToProgress(c[0]));
