@@ -1,4 +1,4 @@
-import { isNil } from '@lordicon/helpers';
+import { deepClone, isNil } from '@lordicon/helpers';
 import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -106,6 +106,15 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
 
             return newState;
         });
+        
+        if (this._states.length) {
+            const firstState = this._states[0];
+            const lastState = this._states[this._states.length - 1];
+
+            // fix animation time
+            this.props.icon.ip = firstState.time;
+            this.props.icon.op = lastState.time + lastState.duration + 1;
+        }
 
         const container: any = this._root!.lastElementChild;
         const initialOptions: LottieOptions = {};
