@@ -240,8 +240,9 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
         if (this._state) {
             const a = this._state.time;
             const b = this._state.time + this._state.duration + 1;
+            const c: [number, number] = [a, b];
 
-            this._lottie!.playSegments([a, b], true);
+            this._lottie!.playSegments(c, true);
         } else {
             this._lottie!.goToAndPlay(0);
         }
