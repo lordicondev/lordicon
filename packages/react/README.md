@@ -1,6 +1,6 @@
 # React
 
-This library allows you to easily integrate the playback of [Lordicon](https://lordicon.com/) icons into a React application.
+This library allows you to easily integrate the playback of [Lordicon](https://lordicon.com/) icons into a React application. This library provides built-in support for both web and native environments.
 
 ## Installation
 
