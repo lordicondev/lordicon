@@ -6,7 +6,7 @@ Here is a list of available web examples for `@lordicon/element`:
   element with released version. Keep in mind that this is not the most
   efficient method as the entire library (including bundled lottie-web) is
   loaded by default.
-- **triggers** - In this example, we present all available built-in animation
+- **triggers** - In this example, we present all built-in animation
   triggers.
 - **trigger target** - Use the target attribute to indicate which parent element
   should activate the trigger. Helpful functionality when building all kinds of
