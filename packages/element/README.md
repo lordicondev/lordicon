@@ -13,7 +13,7 @@ It offers the following features:
 ## Installation
 
 ```bash
-$ npm install @lordicon/element
+$ npm install @lordicon/element lottie-web
 ```
 
 ## Usage
