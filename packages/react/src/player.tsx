@@ -1,4 +1,4 @@
-import { deepClone, isNil } from '@lordicon/helpers';
+import { isNil } from '@lordicon/helpers';
 import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
