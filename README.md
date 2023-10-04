@@ -37,5 +37,5 @@ npm run demo-react
 - [Element Docs](https://element.lordicon.com/) - Full documentation of custom
   element.
 - [React Docs](https://react.lordicon.com/) - Full documentation of react player.
-- [Lottie](http://airbnb.io/lottie) - Render After Effects animations natively
+- [Lottie](https://airbnb.io/lottie) - Render After Effects animations natively
   on Web, Android and iOS, and React Native.
