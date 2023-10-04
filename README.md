@@ -32,7 +32,7 @@ npm run demo-react
 
 ## Useful links
 
-- [Lordicon Library](https://lordicon.com/) - Lordicon is a powerful library of
+- [Lordicon](https://lordicon.com/) - Lordicon is a powerful library of
   thousands of carefully crafted animated icons.
 - [Element Docs](https://element.lordicon.com/) - Full documentation of custom
   element.
