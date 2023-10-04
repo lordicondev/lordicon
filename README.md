@@ -32,9 +32,10 @@ npm run demo-react
 
 ## Useful links
 
-- [Custom Element Docs](https://element.lordicon.com/) - Full documentation of _custom
-  element_.
 - [Lordicon Library](https://lordicon.com/) - Lordicon is a powerful library of
   thousands of carefully crafted animated icons.
+- [Element Docs](https://element.lordicon.com/) - Full documentation of _custom
+  element_.
+- [React Docs](https://react.lordicon.com/) - Full documentation of _react player_.
 - [Lottie](http://airbnb.io/lottie) - Render After Effects animations natively
   on Web, Android and iOS, and React Native.
