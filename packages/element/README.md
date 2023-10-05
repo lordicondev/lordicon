@@ -38,3 +38,7 @@ Example markup:
 ```html
 <lord-icon trigger="hover" src="/my-icon.json"></lord-icon>
 ```
+
+## More examples
+
+For more code samples demonstrating various possibilities, please refer to the 'demo' folder.

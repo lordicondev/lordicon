@@ -32,3 +32,7 @@ export default function Sample() {
   );
 }
 ```
+
+## More examples
+
+For more code samples demonstrating various possibilities, please refer to the 'demo' folder.
