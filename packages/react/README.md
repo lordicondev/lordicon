@@ -41,8 +41,6 @@ For more code samples demonstrating various possibilities, please refer to the '
 
 - [Lordicon](https://lordicon.com/) - Lordicon is a powerful library of
   thousands of carefully crafted animated icons.
-- [Element Docs](https://element.lordicon.com/) - Full documentation of custom
   element.
-- [React Docs](https://react.lordicon.com/) - Full documentation of react player.
 - [Lottie](https://airbnb.io/lottie) - Render After Effects animations natively
   on Web, Android and iOS, and React Native.
