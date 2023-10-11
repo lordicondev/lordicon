@@ -151,10 +151,10 @@ export interface IPlayer {
 
     /**
      * Stop listening for an event.
-     * @param eventName Event name.
+     * @param name Event name.
      * @param callback Event callback.
      */
-    removeEventListener(eventName: PlayerEventName, callback?: PlayerEventCallback): void;
+    removeEventListener(name: PlayerEventName, callback?: PlayerEventCallback): void;
 
     /**
      * Play the animation. 
