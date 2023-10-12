@@ -4,29 +4,29 @@ import lottie from "lottie-web";
 const ICONS = {};
 
 async function loadIcons() {
-    for (const icon of ["lock", "puzzle", "coins"]) {
-        const response = await fetch(`/icons/${icon}.json`);
-        const data = await response.json();
+  for (const icon of ["lock", "puzzle", "coins"]) {
+    const response = await fetch(`/icons/${icon}.json`);
+    const data = await response.json();
 
-        ICONS[icon] = data;
-    }
+    ICONS[icon] = data;
+  }
 }
 
 function initElement() {
-    // Custom icon loader which can provide icon data from any place you want.
-    Element.setIconLoader((iconName) => {
-        return ICONS[iconName];
-    });
+  // Custom icon loader which can provide icon data from any place you want.
+  Element.setIconLoader((iconName) => {
+    return ICONS[iconName];
+  });
 
-    // Register element.
-    defineElement(lottie.loadAnimation);
+  // Register element.
+  defineElement(lottie.loadAnimation);
 }
 
 (async () => {
-    await loadIcons();
+  await loadIcons();
 
-    // Simulate loading delay for icons (in real world loading this library or icons may take a while).
-    setTimeout(() => {
-        initElement();
-    }, 1000);
+  // Simulate loading delay for icons (in real world loading this library or icons may take a while).
+  setTimeout(() => {
+    initElement();
+  }, 1000);
 })();
