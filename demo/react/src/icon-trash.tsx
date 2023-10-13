@@ -18,8 +18,8 @@ export default function IconOnce() {
         } else if (state === 'hover-trash-empty') {
             setState('morph-trash-full');
         } else if (state === 'morph-trash-full') {
-            setState('hover-trash-full-solid');
-        } else if (state === 'hover-trash-full-solid') {
+            setState('hover-trash-full');
+        } else if (state === 'hover-trash-full') {
             setState('morph-trash-full-to-empty');
         } else if (state === 'morph-trash-full-to-empty') {
             setState('hover-trash-empty');
