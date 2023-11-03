@@ -30,7 +30,7 @@ export default [
             entryFileNames: "lordicon.js",
             sourcemap: true,
             dir: "release",
-            format: "es",
+            format: "iife",
             plugins: [terser()],
         },
         plugins: [
