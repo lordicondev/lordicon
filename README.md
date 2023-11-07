@@ -1,3 +1,5 @@
+<img src="/docs/lordicon.png" width="128" align="right" />
+
 # Lordicon
 
 This is the monorepo for Lordicon packages, including __@lordicon/helpers__, __@lordicon/react__ and __@lordicon/element__. 
@@ -21,6 +23,8 @@ This demo showcases the integration of _custom element_ with numerous website us
 ```
 npm run demo-element
 ```
+
+<img src="/docs/element.gif" align="center" />
 
 ### React
 
