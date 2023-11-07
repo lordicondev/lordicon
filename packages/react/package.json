@@ -34,5 +34,16 @@
     "lottie-web": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "lottie-react-native": {
+      "optional": true
+    },
+    "lottie-web": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    }
   }
 }

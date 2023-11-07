@@ -1,3 +1,7 @@
+## v1.2.1 (2023-11-07)
+
+- Make some dependencies optional.
+
 ## v1.2.0 (2023-11-03)
 
 - Change the output format to IIFE for the released @lordicon/element.
