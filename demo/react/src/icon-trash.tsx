@@ -1,6 +1,6 @@
 import { Player } from '@lordicon/react';
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable } from 'react-native';
 
 const ICON = require('../assets/trash.json');
 
@@ -30,17 +30,10 @@ export default function IconOnce() {
         <Pressable onPress={onClick} android_ripple={{ color: 'white' }}>
             <Player 
                 ref={playerRef} 
-                style={styles.player} 
+                size={96}
                 icon={ICON}
                 state={state}
             />
         </Pressable>
     );
 }
-
-const styles = StyleSheet.create({
-    player: {
-        width: 96,
-        height: 96,
-    },
-});

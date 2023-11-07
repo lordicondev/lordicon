@@ -1,6 +1,7 @@
-## v1.2.1 (2023-11-07)
+## v1.2.2 (2023-11-07)
 
 - Make some dependencies optional.
+- Remove react-native import from web player.
 
 ## v1.2.0 (2023-11-03)
 

@@ -1,6 +1,6 @@
 import { Player } from '@lordicon/react';
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable } from 'react-native';
 
 const ICON = require('../assets/lock-alt.json');
 
@@ -20,7 +20,7 @@ export default function IconClick() {
         <Pressable  onPress={onIconClick} android_ripple = {{ color: 'white' }}>
             <Player 
                 ref={playerRef} 
-                style={styles.player} 
+                size={96}
                 icon={ICON}
                 direction={direction}
                 state="morph-unlocked"
@@ -28,10 +28,3 @@ export default function IconClick() {
         </Pressable>
     );
 }
-
-const styles = StyleSheet.create({
-    player: {
-        width: 96,
-        height: 96,
-    },
-});

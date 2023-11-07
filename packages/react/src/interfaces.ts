@@ -40,6 +40,11 @@ export interface IPlayerOptions {
   direction?: AnimationDirection;
 
   /**
+   * Icon size.
+   */
+  size?: number;
+
+  /**
    * Render mode.
    */
   renderMode?: "AUTOMATIC" | "HARDWARE" | "SOFTWARE";

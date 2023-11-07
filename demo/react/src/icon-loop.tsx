@@ -1,6 +1,5 @@
 import { Player } from '@lordicon/react';
 import { useEffect, useRef } from 'react';
-import { StyleSheet } from 'react-native';
 
 const ICON = require('../assets/lock.json');
 
@@ -14,16 +13,9 @@ export default function IconLoop() {
     return (
         <Player 
             ref={playerRef} 
-            style={ styles.player } 
+            size={96}
             icon={ ICON }
             onComplete={() => playerRef.current?.playFromBeginning()}
         />
     );
 }
-
-const styles = StyleSheet.create({
-    player: {
-        width: 96,
-        height: 96,
-    },
-});

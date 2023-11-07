@@ -1,7 +1,7 @@
 import { isNil } from '@lordicon/helpers';
 import LottieView from 'lottie-react-native';
 import React from 'react';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { Animated, Easing, View } from 'react-native';
 import { AnimationDirection, IPlayer, IPlayerOptions, IState } from './interfaces';
 
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
@@ -276,8 +276,15 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
 
     render() {
+        const size = this.props.size || 32;
+
         return (
-            <View style={[styles.container, this.props.style]}>
+            <View style={[{
+                width: size,
+                height: size,
+                aspectRatio: 1,
+                flexDirection: 'row',
+            }, this.props.style]}>
                 <AnimatedLottieView  
                     style={[{flex: 1}]} 
                     autoPlay={false}
@@ -316,12 +323,3 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
         return 1000 / this.props.icon.fr;
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        width: 32,
-        height: 32,
-        aspectRatio: 1,
-        flexDirection: 'row',
-    },
-});

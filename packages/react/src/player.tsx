@@ -1,14 +1,13 @@
 import { isNil } from '@lordicon/helpers';
 import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { IPlayer, IPlayerOptions, IState } from './interfaces';
 
 type LottieOptions = Omit<AnimationConfig, 'container'>;
 
 type PlayerState = {}
 
-type Options = IPlayerOptions & View['props'];
+type Options = IPlayerOptions;
 
 const DEFAULT_LOTTIE_WEB_OPTIONS: Omit<AnimationConfig, 'container'> = {
     renderer: "svg",
@@ -278,10 +277,11 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
 
     render() {
+        const size = this.props.size || 32;
+        const color = this.props.colorize || undefined;
+        
         return (
-            <View style={[styles.container, this.props.style]}>
-                <div ref={this._ref} className={this.props.colorize ? 'colorize' : undefined} style={this.props.colorize ? {color: this.props.colorize} : undefined}></div>
-            </View>
+            <div ref={this._ref} className={this.props.colorize ? 'colorize' : undefined} style={{width: size, height: size, color, aspectRatio: 1, flexDirection: 'row'}}></div>
         );
     }
 
@@ -301,12 +301,3 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
         return this._state;
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        width: 32,
-        height: 32,
-        aspectRatio: 1,
-        flexDirection: 'row',
-    },
-});
