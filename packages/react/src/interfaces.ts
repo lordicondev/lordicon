@@ -25,6 +25,11 @@ export interface IPlayerOptions {
   icon: IconData;
 
   /**
+   * Icon size.
+   */
+  size?: number;
+
+  /**
    * State.
    */
   state?: string;
@@ -38,11 +43,6 @@ export interface IPlayerOptions {
    * Animation direction.
    */
   direction?: AnimationDirection;
-
-  /**
-   * Icon size.
-   */
-  size?: number;
 
   /**
    * Render mode.

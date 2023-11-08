@@ -1,3 +1,7 @@
+## v1.2.3 (2023-11-08)
+
+- Fix component mount for @lordicon/react.
+
 ## v1.2.2 (2023-11-07)
 
 - Make some dependencies optional.

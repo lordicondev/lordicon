@@ -154,29 +154,31 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
 
     componentDidMount() {
-        this._root = this._ref?.current!.attachShadow({
-            mode: "open"
-        })!;
-
-        // stylesheet
-        if (SUPPORTS_ADOPTING_STYLE_SHEETS) {
-            if (!styleSheet) {
-                styleSheet = new CSSStyleSheet();
-                styleSheet.replaceSync(ELEMENT_STYLE);
+        if (!this._root) {
+            this._root = this._ref?.current!.attachShadow({
+                mode: "open"
+            })!;
+    
+            // stylesheet
+            if (SUPPORTS_ADOPTING_STYLE_SHEETS) {
+                if (!styleSheet) {
+                    styleSheet = new CSSStyleSheet();
+                    styleSheet.replaceSync(ELEMENT_STYLE);
+                }
+    
+                this._root.adoptedStyleSheets = [styleSheet];
+            } else {
+                const style = document.createElement("style");
+                style.innerHTML = ELEMENT_STYLE;
+                this._root.appendChild(style);
             }
-
-            this._root.adoptedStyleSheets = [styleSheet];
-        } else {
-            const style = document.createElement("style");
-            style.innerHTML = ELEMENT_STYLE;
-            this._root.appendChild(style);
+    
+            // create container
+            const container = document.createElement("div");
+            container.classList.add('body');
+            this._root.appendChild(container);
         }
-
-        // create container
-        const container = document.createElement("div");
-        container.classList.add('body');
-        this._root.appendChild(container);
-
+   
         this.connect();
     }
 
