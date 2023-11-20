@@ -22,3 +22,4 @@ Here is a list of available web examples for `@lordicon/element`:
 - **Custom trigger (states)** - This example demonstrates complex usage of states with a custom trigger. See how the trash icon appears, fills, and erases as the user interacts.
 - **Lottie light** - Learn how to use our element with 'lottie-web-light,' which is smaller in size but doesn't support expressions or dynamic customization.
 - **Upload** - Get a preview of uploaded files.
+- **Legacy** - Legacy icon file support (without markers).

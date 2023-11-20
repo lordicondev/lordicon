@@ -64,6 +64,11 @@ export function parseStroke(value: any): (1 | 2 | 3 | undefined) {
         return 3;
     }
 
+    // legacy icon file support (without markers)
+    if (typeof value === 'number' || typeof value === 'string') {
+        return +(value) as any;
+    }
+
     return undefined;
 }
 

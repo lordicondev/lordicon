@@ -1,4 +1,4 @@
-import { ILottieProperty, deepClone, get, isNil, lottieColorToHex, parseStroke, readProperties, resetProperties, updateProperties } from '@lordicon/helpers';
+import { ILottieProperty, deepClone, get, isNil, lottieColorToHex, parseStroke, readProperties, resetProperties, set, updateProperties } from '@lordicon/helpers';
 import { AnimationConfig, AnimationConfigWithData, AnimationConfigWithPath, AnimationDirection, AnimationItem } from 'lottie-web';
 import { IColors, IPlayer, IProperties, IState, IconData, PlayerEventCallback, PlayerEventName, Stroke } from './interfaces';
 
@@ -149,6 +149,36 @@ export class Player implements IPlayer {
 
             return newState;
         });
+
+        // legacy icon file support (without markers)
+        if (!this._states.length) {
+            const properties = readProperties(this._iconData, { lottieInstance: false });
+
+            // state
+            if (properties && this._initial.state) {
+                const name = `state-${this._initial.state.toLowerCase()}`;
+                updateProperties(
+                    iconData,
+                    properties.filter(c => c.name.startsWith('state-')),
+                    0,
+                );
+                updateProperties(
+                    iconData,
+                    properties.filter(c => c.name === name),
+                    1,
+                );
+            }
+
+            // stroke
+            if (properties && this._initial.stroke) {
+                const property = properties.filter(c => c.name === 'stroke')[0];
+                if (property) {
+                    const ratio = property.value / 50;
+                    const value = (this._initial.stroke as number) * ratio;
+                    set(iconData, property.path, value);
+                }
+            }
+        }
     }
 
     connect() {
@@ -503,6 +533,11 @@ export class Player implements IPlayer {
     get rawProperties(): ILottieProperty[] {
         if (!this._rawProperties) {
             this._rawProperties = readProperties(this._iconData, { lottieInstance: true });
+
+            // legacy icon file support (without markers)
+            if (!this._states.length && this._rawProperties) {
+                this._rawProperties = this._rawProperties.filter(c => c.name !== 'stroke' && !c.name.startsWith('state-'));
+            }
         }
 
         return this._rawProperties || [];

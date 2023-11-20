@@ -17,6 +17,7 @@ export default {
     "src/state.js",
     "src/triggers.js",
     "src/upload.js",
+    "src/legacy.js",
   ],
   output: {
     sourcemap: true,
