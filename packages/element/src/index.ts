@@ -54,6 +54,9 @@ export function defineElement(animationLoader: AnimationLoader) {
     Element.defineTrigger('boomerang', Boomerang);
     Element.defineTrigger('sequence', Sequence);
 
+    // legacy trigger names
+    Element.defineTrigger('morph-two-way', Boomerang);
+
     if (!customElements.get || !customElements.get('lord-icon')) {
         customElements.define('lord-icon', Element);
     }

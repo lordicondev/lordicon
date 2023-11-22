@@ -1,5 +1,5 @@
 /**
- * List of supported colors by name for parser.
+ * List of supported colors.
  */
 export const COLORS: any = {
     'aliceblue': '#f0f8ff',

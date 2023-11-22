@@ -1,3 +1,7 @@
+## v1.4.0 (2023-11-22)
+
+-   More work on legacy icons support.
+
 ## v1.3.0 (2023-11-20)
 
 -   Legacy icon file support (without markers).

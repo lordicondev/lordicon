@@ -115,6 +115,21 @@ export interface IProperties {
      * Colors.
      */
     colors?: IColors;
+
+    /**
+     * Scale for legacy icons.
+     */
+    scale?: number;
+
+    /**
+     * Axis x for legacy icons.
+     */
+    axisX?: number;
+
+    /**
+     * Axis y for legacy icons.
+     */
+    axisY?: number;
 }
 
 /**

@@ -148,22 +148,26 @@ export class Player implements IPlayer {
             }
 
             return newState;
-        });
+        }).filter((c: IState) => c.duration > 0);
 
         // legacy icon file support (without markers)
         if (!this._states.length) {
+            // clone data before modifying
+            this._iconData = deepClone(this._iconData);
+
+            // read properties
             const properties = readProperties(this._iconData, { lottieInstance: false });
 
             // state
             if (properties && this._initial.state) {
                 const name = `state-${this._initial.state.toLowerCase()}`;
                 updateProperties(
-                    iconData,
+                    this._iconData,
                     properties.filter(c => c.name.startsWith('state-')),
                     0,
                 );
                 updateProperties(
-                    iconData,
+                    this._iconData,
                     properties.filter(c => c.name === name),
                     1,
                 );
@@ -175,7 +179,27 @@ export class Player implements IPlayer {
                 if (property) {
                     const ratio = property.value / 50;
                     const value = (this._initial.stroke as number) * ratio;
-                    set(iconData, property.path, value);
+                    set(this._iconData, property.path, value);
+                }
+            }
+
+            // scale
+            if (properties && this._initial.scale) {
+                const property = properties.filter(c => c.name === 'scale')[0];
+                if (property) {
+                    const ratio = property.value / 50;
+                    const value = (this._initial.scale as number) * ratio;
+                    set(this._iconData, property.path, value);
+                }
+            }
+
+            // axis
+            if (properties && this._initial.axisX && this._initial.axisY) {
+                const property = properties.filter(c => c.name === 'axis')[0];
+                if (property) {
+                    const ratio = ((property.value[0] + property.value[1]) / 2) / 50;
+                    set(this._iconData, property.path + '.0', (this._initial.axisX as number) * ratio);
+                    set(this._iconData, property.path + '.1', (this._initial.axisY as number) * ratio);
                 }
             }
         }
@@ -536,7 +560,7 @@ export class Player implements IPlayer {
 
             // legacy icon file support (without markers)
             if (!this._states.length && this._rawProperties) {
-                this._rawProperties = this._rawProperties.filter(c => c.name !== 'stroke' && !c.name.startsWith('state-'));
+                this._rawProperties = this._rawProperties.filter(c => c.name !== 'scale' && c.name !== 'axis' && c.name !== 'stroke' && !c.name.startsWith('state-'));
             }
         }
 

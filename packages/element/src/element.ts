@@ -348,6 +348,10 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
                 state: parseState(this.state),
                 stroke: parseStroke(this.stroke),
                 colors: parseColors(this.colors),
+                // legacy properties
+                scale: parseFloat('' + this.getAttribute('scale') || ''),
+                axisX: parseFloat('' + this.getAttribute('axis-x') || ''),
+                axisY: parseFloat('' + this.getAttribute('axis-y') || ''),
             },
         );
 
