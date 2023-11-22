@@ -28,7 +28,7 @@ export default [
         input: ["src/release.ts"],
         output: {
             entryFileNames: "lordicon.js",
-            sourcemap: true,
+            sourcemap: false,
             dir: "release",
             format: "iife",
             plugins: [terser()],
@@ -41,6 +41,9 @@ export default [
             typescript({
                 outDir: "release",
                 declaration: false,
+                compilerOptions: {
+                    sourceMap: false,
+                }
             }),
             nodeResolve(),
             commonjs(),
