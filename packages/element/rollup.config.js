@@ -4,7 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import terser from "@rollup/plugin-terser";
 import replace from "@rollup/plugin-replace";
 
-import packageDetails from "./package.json";
+const VERSION = '1.4.1';
 
 export default [
     {
@@ -17,7 +17,7 @@ export default [
         },
         plugins: [
             replace({
-                __BUILD_VERSION__: packageDetails.version,
+                __BUILD_VERSION__: VERSION,
                 preventAssignment: true,
             }),
             typescript(),
@@ -35,7 +35,7 @@ export default [
         },
         plugins: [
             replace({
-                __BUILD_VERSION__: packageDetails.version,
+                __BUILD_VERSION__: VERSION,
                 preventAssignment: true,
             }),
             typescript({

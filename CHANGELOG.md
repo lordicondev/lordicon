@@ -1,3 +1,7 @@
+## v1.4.1 (2023-11-23)
+
+-   Corrected the version number within the NPM package build.
+
 ## v1.4.0 (2023-11-22)
 
 -   More work on legacy icons support.

@@ -6,7 +6,7 @@ import { IColors } from './interfaces';
  * 
  * Example:
  * ```js
- * parseColor('red'); // #ff0000
+ * parseColor('blue'); // #0000ff
  * ```
  * 
  * @param colorName Color name.
