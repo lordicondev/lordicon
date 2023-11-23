@@ -1,6 +1,6 @@
 {
   "name": "@lordicon/element",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "This package offers developers a convenient method for embedding, controlling, and customizing animated icons from Lordicon within web projects.",
   "repository": "https://github.com/lordicondev/lordicon",
   "homepage": "https://lordicon.com/",
@@ -26,7 +26,7 @@
     "clean": "rm -rf dist && rm -rf release"
   },
   "dependencies": {
-    "@lordicon/helpers": "^1.4.0"
+    "@lordicon/helpers": "^1.4.1"
   },
   "devDependencies": {
     "base-64": "^1.0.0",

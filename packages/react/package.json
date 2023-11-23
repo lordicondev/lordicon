@@ -1,6 +1,6 @@
 {
   "name": "@lordicon/react",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "This library allows you to easily integrate the playback of Lordicon icons into a React application.",
   "repository": "https://github.com/lordicondev/lordicon",
   "homepage": "https://lordicon.com/",
@@ -27,7 +27,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/helpers": "^1.4.0"
+    "@lordicon/helpers": "^1.4.1"
   },
   "peerDependencies": {
     "lottie-react-native": "*",
