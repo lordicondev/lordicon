@@ -156,6 +156,11 @@ export class Player implements IPlayer {
             if (this._initial.stroke && ![1, 2, 3, 'light', 'regular', 'bold'].includes(this._initial.stroke)) {
                 delete this._initial.stroke;
             }
+
+            // find defualt state for invalid initial
+            if (this._initial.state && !this._state) {
+                this._state = this._states.filter(c => c.default)[0];
+            }
         }
 
         // legacy icon file support (without markers)
@@ -475,6 +480,10 @@ export class Player implements IPlayer {
             this._state = this._states.filter(c => c.default)[0];
         } else if (state) {
             this._state = this._states.filter(c => c.name === state)[0];
+
+            if (!this._state) {
+                this._state = this._states.filter(c => c.default)[0];
+            }
         }
 
         if (this._state) {

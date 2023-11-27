@@ -1,3 +1,7 @@
+## v1.4.3 (2023-11-27)
+
+-   Use default animation for missing states.
+
 ## v1.4.2 (2023-11-27)
 
 -   Fix icon stroke outside range.
