@@ -1,3 +1,7 @@
+## v1.4.2 (2023-11-27)
+
+-   Fix icon stroke outside range.
+
 ## v1.4.1 (2023-11-23)
 
 -   Corrected the version number within the NPM package build.

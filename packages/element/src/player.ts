@@ -150,6 +150,14 @@ export class Player implements IPlayer {
             return newState;
         }).filter((c: IState) => c.duration > 0);
 
+        // new icon file support (with markers)
+        if (this._states.length) {
+            // fix stroke outside supported range
+            if (this._initial.stroke && ![1, 2, 3, 'light', 'regular', 'bold'].includes(this._initial.stroke)) {
+                delete this._initial.stroke;
+            }
+        }
+
         // legacy icon file support (without markers)
         if (!this._states.length) {
             // clone data before modifying
