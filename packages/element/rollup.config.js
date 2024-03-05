@@ -4,7 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import terser from "@rollup/plugin-terser";
 import replace from "@rollup/plugin-replace";
 
-const VERSION = '1.5.0';
+const VERSION = '1.6.0';
 
 export default [
     {

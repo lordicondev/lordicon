@@ -61,7 +61,7 @@ function rgbToHex(value: IRGBColor): string {
  * @returns 
  */
 function hexToRgb(hex: string): IRGBColor {
-    let data = parseInt(hex[0] != '#' ? hex : hex.substring(1), 16);
+    let data: number = parseInt(hex[0] != '#' ? hex : hex.substring(1), 16);
     return {
         r: (data >> 16) & 255,
         g: (data >> 8) & 255,

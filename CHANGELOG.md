@@ -1,3 +1,7 @@
+## v1.5.1 (2024-03-05)
+
+-   Small fixes in reading "delay".
+
 ## v1.5.0 (2024-03-05)
 
 -   New loading method "delay".

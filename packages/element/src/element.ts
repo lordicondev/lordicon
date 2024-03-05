@@ -766,6 +766,8 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
                 return 'lazy';
             } else if (param === 'interaction') {
                 return 'interaction';
+            } else if (param === 'delay') {
+                return 'delay';
             }
         }
 

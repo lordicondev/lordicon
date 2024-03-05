@@ -279,8 +279,8 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
 
     render() {
-        const size = this.props.size || 32;
-        const color = this.props.colorize || undefined;
+        const size: number = this.props.size || 32;
+        const color: string|undefined = this.props.colorize || undefined;
         
         return (
             <div ref={this._ref} className={this.props.colorize ? 'colorize' : undefined} style={{width: size, height: size, color, aspectRatio: 1, flexDirection: 'row'}}></div>
