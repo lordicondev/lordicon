@@ -4,7 +4,7 @@ import { IPlayer, ITrigger, ITriggerConstructor, IconData, IconLoader, PlayerFac
 /**
  * Supported icon loading strategies for our {@link Element | Element}.
  */
-export type LoadingType = 'lazy' | 'interaction';
+export type LoadingType = 'lazy' | 'interaction' | 'delay';
 
 /**
  * Use constructable stylesheets if supported (https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
@@ -241,7 +241,9 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
 
                 if (!cancel) {
                     this.createPlayer().then(() => {
-                        (targetElement || this).dispatchEvent(new Event(interactionEvent!));
+                        if (interactionEvent) {
+                            (targetElement || this).dispatchEvent(new Event(interactionEvent));
+                        }
                     });
                 }
             };
@@ -263,9 +265,28 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
 
             intersectionCallback = intersectionCallback.bind(this);
 
+            // load on interaction
             for (const eventName of INTERSECTION_LOADING_EVENTS) {
                 (targetElement || this).addEventListener(eventName, intersectionCallback);
             }
+        } else if (this.loading === 'delay') {
+            this.delayedLoading = (cancel?: boolean) => {
+                this.delayedLoading = null;
+
+                if (!cancel) {
+                    this.createPlayer();
+                }
+            };
+
+            // delay time
+            const delay = this.hasAttribute('delay') ? +this.getAttribute('delay')! : 0;
+
+            // delay loading
+            setTimeout(() => {
+                if (this.delayedLoading) {
+                    this.delayedLoading();
+                }
+            }, delay);
         } else {
             this.createPlayer();
         }

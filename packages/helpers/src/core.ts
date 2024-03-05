@@ -79,7 +79,7 @@ export function get<T>(object: T, path: string | string[], defaultValue?: any): 
  * @param value
  */
 export function set(object: any, path: string | string[], value: any) {
-    let current = object;
+    let current: any = object;
 
     const newPath = Array.isArray(path) ? path : path.split(".");
 

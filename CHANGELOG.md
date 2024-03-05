@@ -1,3 +1,7 @@
+## v1.5.0 (2024-03-05)
+
+-   New loading method "delay".
+
 ## v1.4.3 (2023-11-27)
 
 -   Use default animation for missing states.
