@@ -1,3 +1,7 @@
+## v1.6.0 (2024-03-06)
+
+-   Bump version.
+
 ## v1.5.1 (2024-03-05)
 
 -   Small fixes in reading "delay".
