@@ -7,7 +7,7 @@ export default {
     output: {
         sourcemap: true,
         dir: "dist",
-        format: "es",
+        format: "esm",
     },
     plugins: [
         nodeResolve(),

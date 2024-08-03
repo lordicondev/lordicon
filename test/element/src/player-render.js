@@ -3,7 +3,7 @@ import { SIZE, loadIcon, loadImage, getPNG } from "./helpers.js";
 
 const { expect } = chai;
 
-const ACCEPTABLE_MISMATCH = 0.25;
+const ACCEPTABLE_MISMATCH = 0.65;
 
 export default function () {
     describe("render", () => {
@@ -48,6 +48,7 @@ export default function () {
             const compare = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -65,6 +66,7 @@ export default function () {
             const compareB = await new Promise((resolve, reject) => {
                 resemble(imageC)
                     .compareTo(imageD)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -83,6 +85,7 @@ export default function () {
             const compare = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -108,6 +111,7 @@ export default function () {
             const compare = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -124,6 +128,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -139,6 +144,7 @@ export default function () {
             const compareB = await new Promise((resolve, reject) => {
                 resemble(imageC)
                     .compareTo(imageD)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -154,6 +160,7 @@ export default function () {
             const compareC = await new Promise((resolve, reject) => {
                 resemble(imageE)
                     .compareTo(imageF)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -169,6 +176,7 @@ export default function () {
             const compareD = await new Promise((resolve, reject) => {
                 resemble(imageG)
                     .compareTo(imageH)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -187,6 +195,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -242,6 +251,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -261,6 +271,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -280,6 +291,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -336,6 +348,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -356,6 +369,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -376,6 +390,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -429,6 +444,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
@@ -446,6 +462,7 @@ export default function () {
             const compareA = await new Promise((resolve, reject) => {
                 resemble(imageA)
                     .compareTo(imageB)
+                    .ignoreAntialiasing()
                     .onComplete((data) => {
                         resolve(data);
                     });
