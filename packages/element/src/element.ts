@@ -7,11 +7,6 @@ import { IPlayer, ITrigger, ITriggerConstructor, IconData, IconLoader, PlayerFac
 export type LoadingType = 'lazy' | 'interaction' | 'delay';
 
 /**
- * Use constructable stylesheets if supported (https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
- */
-const SUPPORTS_ADOPTING_STYLE_SHEETS = 'adoptedStyleSheets' in Document.prototype && 'replace' in CSSStyleSheet.prototype;
-
-/**
  * List of events supported for intersection loading.
  */
 const INTERSECTION_LOADING_EVENTS = ['click', 'mouseenter', 'mouseleave'];
@@ -318,19 +313,14 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
             mode: "open"
         });
 
-        if (SUPPORTS_ADOPTING_STYLE_SHEETS) {
-            if (!styleSheet) {
-                styleSheet = new CSSStyleSheet();
-                styleSheet.replaceSync(ELEMENT_STYLE);
-            }
-
-            this._root.adoptedStyleSheets = [styleSheet];
-        } else {
-            const style = document.createElement("style");
-            style.innerHTML = ELEMENT_STYLE;
-            this._root.appendChild(style);
+        // add style
+        if (!styleSheet) {
+            styleSheet = new CSSStyleSheet();
+            styleSheet.replaceSync(ELEMENT_STYLE);
         }
 
+        this._root.adoptedStyleSheets = [styleSheet];
+    
         // create container
         const container = document.createElement("div");
         container.classList.add('body');

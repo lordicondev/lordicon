@@ -1,3 +1,9 @@
+## v1.7.0 (2024-08-03)
+
+-   Update dependencies.
+-   Make small fixes for the "in" trigger.
+-   Stop checking the availability of "adoptedStyleSheets".
+
 ## v1.6.0 (2024-03-06)
 
 -   Bump version.

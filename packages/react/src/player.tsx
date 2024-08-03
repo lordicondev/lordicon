@@ -20,11 +20,6 @@ const DEFAULT_LOTTIE_WEB_OPTIONS: Omit<AnimationConfig, 'container'> = {
     },
 }
 
-/**
- * Use constructable stylesheets if supported (https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
- */
-const SUPPORTS_ADOPTING_STYLE_SHEETS = 'adoptedStyleSheets' in Document.prototype && 'replace' in CSSStyleSheet.prototype;
-
 const ELEMENT_STYLE = `
     :host {
         position: relative;
@@ -160,19 +155,13 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
             })!;
     
             // stylesheet
-            if (SUPPORTS_ADOPTING_STYLE_SHEETS) {
-                if (!styleSheet) {
-                    styleSheet = new CSSStyleSheet();
-                    styleSheet.replaceSync(ELEMENT_STYLE);
-                }
-    
-                this._root.adoptedStyleSheets = [styleSheet];
-            } else {
-                const style = document.createElement("style");
-                style.innerHTML = ELEMENT_STYLE;
-                this._root.appendChild(style);
+            if (!styleSheet) {
+                styleSheet = new CSSStyleSheet();
+                styleSheet.replaceSync(ELEMENT_STYLE);
             }
-    
+
+            this._root.adoptedStyleSheets = [styleSheet];
+            
             // create container
             const container = document.createElement("div");
             container.classList.add('body');
