@@ -437,6 +437,9 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
         });
 
         // mark ready
+        this.animationContainer!.classList.add('ready');
+
+        // mark ready
         this._isReady = true;
 
         // notify about ready
@@ -466,6 +469,9 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
         if (this._playerInstance) {
             this._playerInstance.disconnect();
             this._playerInstance = undefined;
+
+            // unmark ready
+            this.animationContainer!.classList.remove('ready');
         }
     }
 
@@ -830,16 +836,16 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Access the animation container element.
+     * Access the loaded {@link interfaces.IconData | icon data}.
      */
-    protected get animationContainer(): HTMLElement | undefined {
-        return this._root!.lastElementChild as any;
+    get iconData(): IconData | undefined {
+        return this._assignedIconData || this._loadedIconData;
     }
 
     /**
-     * Access the loaded {@link interfaces.IconData | icon data}.
+     * Access the animation container element.
      */
-    protected get iconData(): IconData | undefined {
-        return this._assignedIconData || this._loadedIconData;
+    get animationContainer(): HTMLElement | undefined {
+        return this._root!.lastElementChild as any;
     }
 }

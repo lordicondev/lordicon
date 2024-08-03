@@ -1,5 +1,6 @@
 /*.log
 /*.tgz
+.DS_Store
 .expo/
 node_modules
 dist

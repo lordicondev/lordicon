@@ -4,9 +4,9 @@ import { IPlayer, ITrigger } from '../interfaces';
  * The __In__ trigger plays the animation when the icon (target) is within the user's viewport.
  */
 export class In implements ITrigger {
-    private playTimeout: any = null;
-    private played: boolean = false;
-    private intersectionObserver: IntersectionObserver | undefined;
+    protected playTimeout: any = null;
+    protected played: boolean = false;
+    protected intersectionObserver: IntersectionObserver | undefined;
 
     constructor(
         protected player: IPlayer,

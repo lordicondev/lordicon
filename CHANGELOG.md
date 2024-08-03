@@ -1,8 +1,9 @@
 ## v1.7.0 (2024-08-03)
 
--   Update dependencies.
--   Make small fixes for the "in" trigger.
--   Stop checking the availability of "adoptedStyleSheets".
+-   The code no longer checks for the availability of the adoptedStyleSheets property (fix for "ReferenceError: Document is not defined" message).
+-   Small corrections have been made to the functionality involving the "in" trigger.
+-   The system now includes functionality to access loaded icon data from an element.
+-   The project's dependencies have been updated to the latest versions.
 
 ## v1.6.0 (2024-03-06)
 

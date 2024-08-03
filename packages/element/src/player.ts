@@ -269,12 +269,10 @@ export class Player implements IPlayer {
         });
 
         if (this._lottie.isLoaded) {
-            this._container.classList.add('ready');
             this._isReady = true;
             this.triggerEvent('ready');
         } else {
             this._lottie.addEventListener('config_ready', () => {
-                this._container.classList.add('ready');
                 this._isReady = true;
                 this.triggerEvent('ready');
             });
@@ -293,8 +291,6 @@ export class Player implements IPlayer {
 
         this._colorsProxy = undefined;
         this._rawProperties = undefined;
-
-        this._container.classList.remove('ready');
     }
 
     addEventListener(name: PlayerEventName, callback: PlayerEventCallback): () => void {
