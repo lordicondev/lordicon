@@ -1,6 +1,7 @@
-import { isNil } from '@lordicon/helpers';
+import { ILottieProperty, isNil, lottieColorToHex } from '@lordicon/helpers';
 import lottie, { AnimationConfig, AnimationItem } from 'lottie-web';
 import React from 'react';
+import { handleProps } from './helpers';
 import { IPlayer, IPlayerOptions, IState } from './interfaces';
 
 type LottieOptions = Omit<AnimationConfig, 'container'>;
@@ -31,11 +32,11 @@ const ELEMENT_STYLE = `
     }
 
     :host(.colorize) svg path[fill] {
-        fill: currentColor;
+        fill: var(--lord-icon-colorize, currentColor);
     }
 
     :host(.colorize) svg path[stroke] {
-        stroke: currentColor;
+        stroke: var(--lord-icon-colorize, currentColor);
     }
 
     svg {
@@ -68,49 +69,56 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     
     protected _states: IState[] = [];
     protected _state?: IState;
-    protected  _root?: ShadowRoot;
+    protected _root?: ShadowRoot;
+    protected _iconData: any;
+    protected _properties: ILottieProperty[] = [];
     
     protected _lottie?: AnimationItem;
     
     constructor(props: Options) {
         super(props);
 
+        const { iconData, states, state, properties } = handleProps(props);
+
+        this._iconData = iconData;
+        this._states = states;
+        this._state = state;
+        this._properties = properties;
+
         this._ref = React.createRef<HTMLDivElement>();
     }
 
     connect() {
-        if (!this.props.icon) {
+        if (!this._iconData) {
             return;
         }
+        
+        const container: any = this._root!.lastElementChild;
 
-        this._states = (this.props.icon.markers || []).map((c: any) => {
-            const [partA, partB] = c.cm.split(':');
-            const newState: IState = {
-                time: c.tm,
-                duration: c.dr,
-                name: partB || partA,
-                default: partB && partA.includes('default') ? true : false,
-            };
+        // support css variables
+        const colors = this._properties.filter(c => c.type === 'color');
+        if (colors.length) {
+            let styleContent = '';
+            for (const color of colors) {
+                const key = color.name;
+                const value = lottieColorToHex(color.value);
 
-            if (newState.name === this.props.state) {
-                this._state = newState;
-            } else if (newState.default && isNil(this.props.state)) {
-                this._state = newState;
+                styleContent += `
+                    :host(:not(.colorize)) svg path[fill].${key} {
+                        fill: var(--lord-icon-${key}, var(--lord-icon-${key}-base, ${value}));
+                    }
+        
+                    :host(:not(.colorize)) svg path[stroke].${key} {
+                        stroke: var(--lord-icon-${key}, var(--lord-icon-${key}-base, ${value}));
+                    }
+                `
             }
 
-            return newState;
-        });
-        
-        if (this._states.length) {
-            const firstState = this._states[0];
-            const lastState = this._states[this._states.length - 1];
-
-            // fix animation time
-            this.props.icon.ip = firstState.time;
-            this.props.icon.op = lastState.time + lastState.duration + 1;
+            const style = document.createElement("style");
+            style.innerHTML = styleContent;
+            container!.appendChild(style);
         }
 
-        const container: any = this._root!.lastElementChild;
         const initialOptions: LottieOptions = {};
 
         if (this._state) {
@@ -119,7 +127,7 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
 
         this._lottie = lottie.loadAnimation({
             container,
-            animationData: this.props.icon,
+            animationData: this._iconData,
             ...initialOptions,
             ...DEFAULT_LOTTIE_WEB_OPTIONS,
         });
@@ -184,7 +192,7 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
             this.onDirectionChanged();
         }
 
-        if (prevProps.icon !== this.props.icon) {
+        if (prevProps.icon !== this.props.icon || prevProps.colors !== this.props.colors) {
             this.onIconChanged();
         }
     }
@@ -223,6 +231,13 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
 
     onIconChanged() {
+        const { iconData, states, state, properties } = handleProps(this.props);
+
+        this._iconData = iconData;
+        this._states = states;
+        this._state = state;
+        this._properties = properties;
+
         this.disconnect();
         this.connect();
     }

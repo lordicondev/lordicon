@@ -35,6 +35,11 @@ export interface IPlayerOptions {
   state?: string;
 
   /**
+   * Colors of the icon.
+   */
+  colors?: string;
+
+  /**
    * Replaces the colors of icon with another color.
    */
   colorize?: string;

@@ -15,6 +15,7 @@ export default function IconLoop() {
             ref={playerRef} 
             size={96}
             icon={ ICON }
+            colors="primary:red,secondary:blue"
             onComplete={() => playerRef.current?.playFromBeginning()}
         />
     );

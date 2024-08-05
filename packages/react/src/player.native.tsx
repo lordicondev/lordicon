@@ -1,7 +1,8 @@
-import { isNil } from '@lordicon/helpers';
+import { ILottieProperty, isNil } from '@lordicon/helpers';
 import LottieView from 'lottie-react-native';
 import React from 'react';
 import { Animated, Easing, View } from 'react-native';
+import { handleProps } from './helpers';
 import { AnimationDirection, IPlayer, IPlayerOptions, IState } from './interfaces';
 
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
@@ -25,10 +26,19 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     protected _playing: boolean = false;
     protected _animation?: IAnimation;
     protected _progress: number = 0;
+    protected _iconData: any;
+    protected _properties: ILottieProperty[] = [];
     
     constructor(props: Options) {
         super(props);
         
+        const { iconData, states, state, properties } = handleProps(props);
+
+        this._iconData = iconData;
+        this._states = states;
+        this._state = state;
+        this._properties = properties;
+
         this.state = { 
             progress: new Animated.Value(1),
         };
@@ -39,39 +49,11 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
 
     connect() {
-        if (!this.props.icon) {
+        if (!this._iconData) {
             return;
         }
 
-        this._states = (this.props.icon.markers || []).map((c: any) => {
-            const [partA, partB] = c.cm.split(':');
-            const newState: IState = {
-                time: c.tm,
-                duration: c.dr,
-                name: partB || partA,
-                default: partB && partA.includes('default') ? true : false,
-            };
-
-            if (newState.name === this.props.state) {
-                this._state = newState;
-            } else if (newState.default && isNil(this.props.state)) {
-                this._state = newState;
-            }
-
-            return newState;
-        });
-
-        if (this._states.length) {
-            const firstState = this._states[0];
-            const lastState = this._states[this._states.length - 1];
-
-            // fix animation time
-            this.props.icon.ip = firstState.time;
-            this.props.icon.op = lastState.time + lastState.duration + 1;
-        }
-        
         this.goToFirstFrame();
-
         this.onReady();
     }
 
@@ -99,7 +81,7 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
             this.onDirectionChanged();
         }
 
-        if (prevProps.icon !== this.props.icon) {
+        if (prevProps.icon !== this.props.icon || prevProps.colors !== this.props.colors) {
             this.onIconChanged();
         }
     }
@@ -171,8 +153,7 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
         }
 
         this.playFromBeginning();
-        this.pause();
-
+        this.pause()
 
         if (isPlaying) {
             this.play();
@@ -180,6 +161,13 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
     
     onIconChanged() {
+        const { iconData, states, state, properties } = handleProps(this.props);
+
+        this._iconData = iconData;
+        this._states = states;
+        this._state = state;
+        this._properties = properties;
+
         this.disconnect();
         this.connect();
     }
@@ -290,7 +278,7 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
                     autoPlay={false}
                     loop={false}
                     progress={this.state.progress}
-                    source={this.props.icon}
+                    source={this._iconData}
                     renderMode={this.props.renderMode}
                     cacheComposition={false}
                     colorFilters={ this.props.colorize ? [{ keypath: '*', color: this.props.colorize } ] : undefined }
@@ -316,10 +304,10 @@ export class Player extends React.Component<Options, PlayerState> implements IPl
     }
 
     get _totalFrames() {
-        return this.props.icon.op - 1;
+        return this._iconData.op - 1;
     }
 
     get _fr() {
-        return 1000 / this.props.icon.fr;
+        return 1000 / this._iconData.fr;
     }
 }

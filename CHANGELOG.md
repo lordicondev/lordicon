@@ -1,3 +1,8 @@
+## v1.8.0 (2024-08-05)
+
+-   Support for CSS variables within a React library (web environment only).
+-   Support for assigning colors to icons during loading with a React library (both web and native environments).
+
 ## v1.7.0 (2024-08-03)
 
 -   The code no longer checks for the availability of the adoptedStyleSheets property (fix for "ReferenceError: Document is not defined" message).
