@@ -628,26 +628,29 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
      * Update the current icon. You can assign either an icon name handled by the {@link interfaces.IconLoader | icon loader} or directly use {@link interfaces.IconData | icon data}.
      */
     set icon(value: IconData | string | undefined) {
-        if (value && isObjectLike(value)) {
-            if (this._assignedIconData !== value) {
-                this._assignedIconData = value;
+        const oldAssignedIconData = this._assignedIconData;
 
+        if (value && isObjectLike(value)) {
+            this._assignedIconData = value;
+
+            if (oldAssignedIconData !== value) {
                 if (this.hasAttribute('icon')) {
+                    // remove attribution will trigger iconChanged
                     this.removeAttribute('icon');
                 } else {
                     this.iconChanged();
                 }
             }
         } else {
-            const oldIconData = this._assignedIconData;
             this._assignedIconData = undefined;
 
             if (value && typeof value === 'string') {
                 this.setAttribute('icon', value);
             } else {
-                this.removeAttribute('icon');
-
-                if (oldIconData) {
+                if (this.hasAttribute('icon')) {
+                    // remove attribution will trigger iconChanged
+                    this.removeAttribute('icon');
+                } else if (oldAssignedIconData) {
                     this.iconChanged();
                 }
             }
@@ -810,6 +813,23 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
+     * Assign an {@link interfaces.IconData | icon data}.
+     */
+    set iconData(value: IconData | undefined) {
+        if (value !== this._assignedIconData) { 
+            this._assignedIconData = value;
+            this.iconChanged();
+        }
+    }
+
+    /**
+     * Access the loaded {@link interfaces.IconData | icon data}.
+     */
+    get iconData(): IconData | undefined {
+        return this._assignedIconData || this._loadedIconData;
+    }
+
+    /**
      * Check whether the element is ready (has an instantiated player, trigger, and loaded icon data).
      * 
      * You can listen for the element's readiness with an event listener:
@@ -833,13 +853,6 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
      */
     get triggerInstance(): ITrigger | undefined {
         return this._triggerInstance;
-    }
-
-    /**
-     * Access the loaded {@link interfaces.IconData | icon data}.
-     */
-    get iconData(): IconData | undefined {
-        return this._assignedIconData || this._loadedIconData;
     }
 
     /**

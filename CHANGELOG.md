@@ -1,3 +1,7 @@
+## v1.9.0 (2024-08-09)
+
+-   Support for the "iconData" setter.
+
 ## v1.8.0 (2024-08-05)
 
 -   Support for CSS variables within a React library (web environment only).

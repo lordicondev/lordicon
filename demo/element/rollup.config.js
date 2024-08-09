@@ -9,6 +9,7 @@ export default {
     "src/custom-trigger-scroll.js",
     "src/custom-trigger-states.js",
     "src/custom-trigger.js",
+    "src/icon-directly.js",
     "src/icon-loader.js",
     "src/loading-lazy-effect.js",
     "src/loading-placeholder.js",
