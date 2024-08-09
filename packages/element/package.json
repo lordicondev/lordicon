@@ -12,6 +12,7 @@
   ],
   "author": "Marcin Baszczewski <marcin@baszczewski.pl>",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

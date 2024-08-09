@@ -1,6 +1,7 @@
 ## v1.9.0 (2024-08-09)
 
 -   Support for the "iconData" setter.
+-   Type "module". 
 
 ## v1.8.0 (2024-08-05)
 
