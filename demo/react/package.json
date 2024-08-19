@@ -1,7 +1,7 @@
 {
   "name": "demo-react",
   "private": true,
-  "version": "1.7.0",
+  "version": "1.9.1",
   "description": "",
   "keywords": [],
   "author": "Marcin Baszczewski <marcin@baszczewski.pl>",
@@ -15,9 +15,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/react": "*",
-    "lottie-web": "^5.12.2",
+    "@lordicon/react": "^1.9.1",
     "lottie-react-native": "^6.7.2",
+    "lottie-web": "^5.12.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.3",

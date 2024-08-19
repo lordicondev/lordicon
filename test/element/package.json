@@ -1,6 +1,6 @@
 {
   "name": "test-element",
-  "version": "1.7.0",
+  "version": "1.9.1",
   "private": true,
   "keywords": [
     "lordicon",
@@ -14,8 +14,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/element": "*",
-    "@lordicon/helpers": "*"
+    "@lordicon/element": "^1.9.1",
+    "@lordicon/helpers": "^1.9.1"
   },
   "devDependencies": {
     "base-64": "^1.0.0",

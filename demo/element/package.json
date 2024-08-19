@@ -1,7 +1,7 @@
 {
   "name": "demo-element",
   "private": true,
-  "version": "1.7.0",
+  "version": "1.9.1",
   "description": "",
   "author": "Marcin Baszczewski <marcin@baszczewski.pl>",
   "homepage": "",
@@ -12,7 +12,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@lordicon/element": "*",
+    "@lordicon/element": "^1.9.1",
     "lottie-web": "^5.12.2"
   }
 }
