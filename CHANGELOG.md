@@ -1,3 +1,7 @@
+## v1.9.1 (2024-08-19)
+
+-   Remove type "module" for react. 
+
 ## v1.9.0 (2024-08-09)
 
 -   Support for the "iconData" setter.
