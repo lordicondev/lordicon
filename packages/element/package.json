@@ -33,5 +33,6 @@
     "base-64": "^1.0.0",
     "lottie-web": "^5.12.2",
     "resemblejs": "^4.1.0"
-  }
+  },
+  "gitHead": "83626eca200362bf61348a4d28bd7917c1f85c7b"
 }

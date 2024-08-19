@@ -22,5 +22,6 @@
   "scripts": {
     "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
     "clean": "rm -rf dist"
-  }
+  },
+  "gitHead": "83626eca200362bf61348a4d28bd7917c1f85c7b"
 }

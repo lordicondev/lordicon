@@ -45,5 +45,6 @@
     "react-native": {
       "optional": true
     }
-  }
+  },
+  "gitHead": "83626eca200362bf61348a4d28bd7917c1f85c7b"
 }
