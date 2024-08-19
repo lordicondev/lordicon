@@ -1,4 +1,4 @@
-## v1.9.1 (2024-08-19)
+## v1.9.2 (2024-08-19)
 
 -   Remove type "module" for @lordicon/react. 
 
