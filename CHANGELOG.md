@@ -1,3 +1,7 @@
+## v1.10.1 (2024-11-04)
+
+-   Support for older iOS versions, 16.3 and earlier.
+
 ## v1.10.0 (2024-08-19)
 
 -   Remove type "module" for @lordicon/react. 

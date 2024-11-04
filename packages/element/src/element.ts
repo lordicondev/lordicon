@@ -12,6 +12,11 @@ export type LoadingType = 'lazy' | 'interaction' | 'delay';
 const INTERSECTION_LOADING_EVENTS = ['click', 'mouseenter', 'mouseleave'];
 
 /**
+ * Use constructable stylesheets if supported (https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
+ */
+const SUPPORTS_ADOPTING_STYLE_SHEETS = 'adoptedStyleSheets' in Document.prototype && 'replace' in CSSStyleSheet.prototype;
+
+/**
  * Static style for this element.
  */
 const ELEMENT_STYLE = `
@@ -54,7 +59,7 @@ const ELEMENT_STYLE = `
 /**
  * Current style sheet instance (if supported).
  */
-let styleSheet: CSSStyleSheet;
+let styleSheet: CSSStyleSheet | null = null;
 
 /**
  * Supported attributes for this custom element.
@@ -314,13 +319,19 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
         });
 
         // add style
-        if (!styleSheet) {
-            styleSheet = new CSSStyleSheet();
-            styleSheet.replaceSync(ELEMENT_STYLE);
+        if (SUPPORTS_ADOPTING_STYLE_SHEETS) {
+            if (!styleSheet) {
+                styleSheet = new CSSStyleSheet();
+                styleSheet.replaceSync(ELEMENT_STYLE);
+            }
+
+            this._root.adoptedStyleSheets = [styleSheet];
+        } else {
+            const style = document.createElement("style");
+            style.innerHTML = ELEMENT_STYLE;
+            this._root.appendChild(style);
         }
 
-        this._root.adoptedStyleSheets = [styleSheet];
-    
         // create container
         const container = document.createElement("div");
         container.classList.add('body');
@@ -816,7 +827,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
      * Assign an {@link interfaces.IconData | icon data}.
      */
     set iconData(value: IconData | undefined) {
-        if (value !== this._assignedIconData) { 
+        if (value !== this._assignedIconData) {
             this._assignedIconData = value;
             this.iconChanged();
         }
