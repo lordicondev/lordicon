@@ -54,7 +54,7 @@ const ELEMENT_STYLE = `
 /**
  * Current style sheet instance (if supported).
  */
-let styleSheet: CSSStyleSheet;
+let styleSheet: CSSStyleSheet | null;
 
 /**
  * Supported attributes for this custom element.
@@ -85,12 +85,12 @@ const OBSERVED_ATTRIBUTES: SUPPORTED_ATTRIBUTES[] = [
 
 /**
  * Define custom element and a player to streamline the rendering, customization, and easy control of Lordicon icons.
- * 
+ *
  * Example:
  * ```js
  * import lottie from 'lottie-web';
  * import { Element, Player } from '@lordicon/element';
- * 
+ *
  * Element.setPlayerFactory((container, iconData, initial) => {
  *     return new Player(
  *         lottie.loadAnimation,
@@ -99,10 +99,10 @@ const OBSERVED_ATTRIBUTES: SUPPORTED_ATTRIBUTES[] = [
  *         initial,
  *     );
  * });
- * 
+ *
  * customElements.define("lord-icon", Element);
  * ```
- * 
+ *
  * Notice: you can define this custom element, a lot easier with premade helper method: {@link index.defineElement | defineElement}.
  */
 export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
@@ -127,20 +127,20 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     /**
      * Assign a callback responsible for loading icons. This allows {@link element.Element | Element} to load {@link interfaces.IconData | icon data} from a custom source.
      * Remember to assign the _icon loader_ before defining the `lord-icon` custom element to take effect.
-     * 
+     *
      * Example:
      * ```js
      * import lottie from 'lottie-web';
      * import { defineElement, Element } from '@lordicon/element';
-     * 
+     *
      * Element.setIconLoader(async (name) => {
      *     const response = await fetch(`https://example.com/${name}.json`);
      *     return await response.json();
      * });
-     * 
+     *
      * defineElement(lottie.loadAnimation);
      * ```
-     * 
+     *
      * @param loader Custom icon loader callback.
      */
     static setIconLoader(loader: IconLoader) {
@@ -314,13 +314,18 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
         });
 
         // add style
-        if (!styleSheet) {
-            styleSheet = new CSSStyleSheet();
-            styleSheet.replaceSync(ELEMENT_STYLE);
+        if (typeof CSSStyleSheet !== 'undefined' && this._root.adoptedStyleSheets) {
+            if (!styleSheet) {
+                styleSheet = new CSSStyleSheet()
+                styleSheet.replaceSync(ELEMENT_STYLE)
+            }
+            this._root!.adoptedStyleSheets = [styleSheet]
+        } else {
+            const style = document.createElement('style')
+            style.textContent = ELEMENT_STYLE
+            this._root!.appendChild(style)
         }
 
-        this._root.adoptedStyleSheets = [styleSheet];
-    
         // create container
         const container = document.createElement("div");
         container.classList.add('body');
@@ -447,7 +452,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Destroy connected player and connected trigger. 
+     * Destroy connected player and connected trigger.
      * The player is recreated every time the icon data changes.
      */
     protected destroyPlayer() {
@@ -683,8 +688,8 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Set the 'state' value. 
-     * 
+     * Set the 'state' value.
+     *
      * Note: You can check available states for the loaded icon using the `states` property.
      */
     set state(value: string | null) {
@@ -704,7 +709,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
 
     /**
      * Configure color values. We support a string format with comma-separated colors: "primary:#fdd394,secondary:#03a9f4".
-     * 
+     *
      * Example:
      * ```html
      * <lord-icon colors="primary:#fdd394,secondary:#03a9f4" src="/icons/confetti.json"></lord-icon>
@@ -744,7 +749,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
     }
 
     /**
-     * Set the loading strategy. By default, {@link interfaces.IconData | icon data} is loaded instantly upon {@link interfaces.IPlayer | player} initialization. 
+     * Set the loading strategy. By default, {@link interfaces.IconData | icon data} is loaded instantly upon {@link interfaces.IPlayer | player} initialization.
      * It's possible to delay icon loading (using the _src_ and _icon_ attributes) by changing the _loading_ value to _lazy_ or _interaction_.
      */
     set loading(value: LoadingType | null) {
@@ -816,7 +821,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
      * Assign an {@link interfaces.IconData | icon data}.
      */
     set iconData(value: IconData | undefined) {
-        if (value !== this._assignedIconData) { 
+        if (value !== this._assignedIconData) {
             this._assignedIconData = value;
             this.iconChanged();
         }
@@ -831,7 +836,7 @@ export class Element<P extends IPlayer = IPlayer> extends HTMLElement {
 
     /**
      * Check whether the element is ready (has an instantiated player, trigger, and loaded icon data).
-     * 
+     *
      * You can listen for the element's readiness with an event listener:
      * ```js
      * element.addEventListener('ready', () => {});
