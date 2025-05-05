@@ -35,7 +35,8 @@
     "docs-element": "lerna run start --scope=docs-element",
     "docs-react": "lerna run start --scope=docs-react",
     "docs-helpers": "lerna run start --scope=docs-helpers",
-    "test-element": "lerna run start --scope=test-element"
+    "test-element": "lerna run start --scope=test-element",
+    "dev": "npx nx run-many --target=build --watch"
   },
   "engines": {
     "node": ">= 20"
