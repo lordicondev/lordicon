@@ -1,3 +1,7 @@
+## v1.11.0 (2025-05-05)
+
+-   Allow control of the speed within the sequence trigger.
+
 ## v1.10.1 (2024-11-04)
 
 -   Support for older iOS versions, 16.3 and earlier.
