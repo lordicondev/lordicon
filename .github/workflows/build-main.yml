@@ -19,9 +19,9 @@ jobs:
                 # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "npm"
@@ -33,19 +33,19 @@ jobs:
               id: date
               run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
             - name: Docs element
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: ${{ steps.date.outputs.date }}-docs-element
                   path: |
                       docs/element/dist
             - name: Docs react
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: ${{ steps.date.outputs.date }}-docs-react
                   path: |
                       docs/react/dist
             - name: Docs helpers
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: ${{ steps.date.outputs.date }}-docs-helpers
                   path: |
