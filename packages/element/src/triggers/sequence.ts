@@ -26,7 +26,7 @@ export class Sequence implements ITrigger {
     ) {
         this.observer = new MutationObserver((mutationList, observer) => {
             for (const mutation of mutationList) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'sequence') {
+                if (mutation.type === 'attributes' && ['sequence', 'speed'].includes(mutation.attributeName!)) {
                     this.reset();
                     this.step();
                 }
@@ -49,6 +49,8 @@ export class Sequence implements ITrigger {
 
     onConnected() {
         this.observer.observe(this.element, MUTATION_OBSERVER_CONFIG);
+
+        this.player.speed = this.speed;
     }
 
     onDisconnected() {
@@ -58,10 +60,13 @@ export class Sequence implements ITrigger {
             clearTimeout(this.timer);
             this.timer = null;
         }
+
+        this.player.speed = 1;
     }
 
     reset() {
         this.player.pause();
+        this.player.speed = this.speed;
         this.sequenceIndex = 0;
         this.frameState = this.frameDelayFirst = this.frameDelayLast = null;
 
@@ -168,5 +173,9 @@ export class Sequence implements ITrigger {
 
     get sequence() {
         return this.element.getAttribute('sequence') || '';
+    }
+
+    get speed() {
+        return this.element.hasAttribute('speed') ? +(this.element.getAttribute('speed') || 1) : 1;
     }
 }
