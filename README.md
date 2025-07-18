@@ -1,6 +1,8 @@
-<img src="/docs/lordicon.png" width="128" align="right" />
-
-# Lordicon
+> **⚠️ This repository is deprecated and no longer actively maintained.**
+> 
+> Development of Lordicon players has been moved to separate repositories for better modularity and maintenance.
+>
+> Please migrate to the new repositories for the latest updates, bug fixes, and new features.
 
 This is the monorepo for Lordicon packages, including __@lordicon/helpers__, __@lordicon/react__ and __@lordicon/element__. 
 Feel free to explore and integrate [Lordicon](https://lordicon.com/) animated icons into your projects with these easy-to-use packages.
